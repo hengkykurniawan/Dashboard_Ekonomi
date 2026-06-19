@@ -1,0 +1,16 @@
+# Claude Code local machine-specific settings (contains absolute paths / permissions)
+.claude/settings.local.json
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
