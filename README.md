@@ -83,23 +83,27 @@ The dashboard reads its figures from **`data.json`**, which is refreshed by
 
 | Panel | Source | Auto? |
 | --- | --- | --- |
-| GDP, inflation, unemployment, poverty, trade | BPS WebAPI | ✅ daily |
+| GDP growth (y-o-y **and** q-o-q) | BPS WebAPI | ✅ daily |
+| Inflation, unemployment, poverty, trade | BPS WebAPI | ✅ daily |
+| Foreign tourist arrivals, Farmer's Terms of Trade (NTP) | BPS WebAPI | ✅ daily |
 | USD/IDR (reference rate) | [Frankfurter](https://frankfurter.dev/) (ECB) | ✅ daily |
 | BI-Rate (policy rate) | Bank Indonesia | ✍️ semi-manual |
-| JISDOR (official fixing) | Bank Indonesia | ✍️ semi-manual |
 | Foreign reserves | Bank Indonesia | ✍️ semi-manual (monthly) |
 | Inflation target | Bank Indonesia | ✍️ static (annual policy) |
 
 The BPS variable mappings are validated and documented in [PHASE2.md](PHASE2.md).
 USD/IDR is a market reference rate (ECB via Frankfurter), **not** the official
-BI JISDOR fixing — JISDOR has no usable API, so it's a separate semi-manual
-panel. The other Bank Indonesia series have no free API either.
+BI JISDOR fixing — JISDOR has no usable API. The other Bank Indonesia series
+have no free API either.
+
+> **Inflation components** (core / administered / volatile-food) are **not**
+> available in the BPS WebAPI — BPS only publishes that split in its press
+> releases, so it can't be auto-fetched. The headline y-o-y inflation is wired.
 
 **Updating the semi-manual panels** (edit the matching `kpis[]` entry in
 `data.json` — `value`, `period`, `change` — then commit; the pipeline preserves
 them in between):
 - **BI-Rate** (`birate`): on RDG meeting days; also append the month to `charts.birate`.
-- **JISDOR** (`jisdor`): the official daily fixing, when you want it refreshed.
 - **Foreign reserves** (`reserves`): monthly, when BI publishes (~7th).
 - **Inflation target** (`inflation_target`): yearly, when BI revises the target.
 

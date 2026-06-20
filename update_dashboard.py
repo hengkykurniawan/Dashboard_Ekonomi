@@ -39,6 +39,12 @@ DATA_FILE = Path(__file__).with_name("data.json")
 INDICATORS = {
     "gdp":          dict(var=104,  turvar="5", vervar="99003", ptype="Q", kind="percent", good="up",
                          compare=4, chart="gdp_quarterly",     field="growth", points=9),
+    "gdp_qoq":      dict(var=104,  turvar="4", vervar="99003", ptype="Q", kind="percent", good="up",
+                         compare=1, chart=None,                field=None,     points=0),
+    "tourism":      dict(var=1470, turvar="0", vervar="248",   ptype="M", kind="count_m", good="up",
+                         compare=12, chart=None,               field=None,     points=0),
+    "ntp":          dict(var=1717, turvar="1390", vervar="22", ptype="M", kind="index",   good="up",
+                         compare=1, chart=None,                field=None,     points=0),
     "inflation":    dict(var=2249, turvar="0", vervar="151",   ptype="M", kind="percent", good="down",
                          compare=1, chart="inflation_monthly", field="yoy",    points=9),
     "unemployment": dict(var=543,  turvar="0", vervar="9999",  ptype="M", kind="percent", good="down",
@@ -96,7 +102,11 @@ def classify_period(label: str):
 
 def fmt_value(value: float, kind: str) -> str:
     if kind == "percent":
-        return f"{value:.2f}%"
+        return f"{value:.2f}%".replace("-", "−")      # use Unicode minus for consistency
+    if kind == "index":
+        return f"{value:.2f}".replace("-", "−")
+    if kind == "count_m":                     # source is a raw count
+        return f"{value / 1e6:.2f}M"
     if kind == "usd_b":                       # source is US$ million
         b = value / 1000.0
         return f"{'+' if b >= 0 else '−'}${abs(b):.2f}B"
@@ -111,6 +121,20 @@ def direction(delta: float, good: str) -> str:
     if good == "up":
         return "positive" if delta >= 0 else "negative"
     return "positive" if delta <= 0 else "negative"
+
+
+def fmt_change(value: float, prev: float, prev_period: str, kind: str, good: str):
+    """Return (change_string, dir) comparing `value` to `prev`, formatted by kind."""
+    delta = value - prev
+    sign = "+" if delta >= 0 else "−"
+    if kind == "index":
+        body = f"{sign}{abs(delta):.2f} pts vs {prev_period}"
+    elif kind == "count_m":
+        pct = (delta / prev * 100) if prev else 0.0
+        body = f"{'+' if pct >= 0 else '−'}{abs(pct):.1f}% vs {prev_period}"
+    else:                                      # percent → percentage points
+        body = f"{sign}{abs(delta):.2f} pp vs {prev_period} ({prev:.2f}%)"
+    return f"{arrow(delta)} {body}", direction(delta, good)
 
 
 def collect_points(client: BPSClient, var, turvar, vervar, ptype):
@@ -141,9 +165,7 @@ def update_bps(data: dict, verbose: bool) -> list[str]:
             off = cfg["compare"]
             if len(pts) > off:
                 pp, _pl, pv = pts[-1 - off]
-                delta = value - pv
-                kpis[key]["change"] = f"{arrow(delta)} {'+' if delta >= 0 else '−'}{abs(delta):.2f} pp vs {pp} ({pv:.2f}%)"
-                kpis[key]["dir"] = direction(delta, cfg["good"])
+                kpis[key]["change"], kpis[key]["dir"] = fmt_change(value, pv, pp, cfg["kind"], cfg["good"])
             if cfg["chart"] and cfg["field"]:
                 tail = pts[-cfg["points"]:]
                 ch = data["charts"].setdefault(cfg["chart"], {})

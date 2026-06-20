@@ -21,6 +21,16 @@
       "src_url": "https://www.bps.go.id/id/pressrelease/2026/05/05/2575/ekonomi-indonesia-triwulan-i-2026-tumbuh-5-61-persen--y-on-y-.html"
     },
     {
+      "key": "gdp_qoq",
+      "label": "GDP Growth (q-on-q)",
+      "value": "−0.77%",
+      "period": "Q1 2026",
+      "change": "▼ −1.63 pp vs Q4 2025 (0.86%)",
+      "dir": "negative",
+      "src_label": "BPS release →",
+      "src_url": "https://www.bps.go.id/id/pressrelease/2026/05/05/2575/ekonomi-indonesia-triwulan-i-2026-tumbuh-5-61-persen--y-on-y-.html"
+    },
+    {
       "key": "inflation",
       "label": "Inflation (y-on-y)",
       "value": "3.08%",
@@ -99,6 +109,26 @@
       "dir": "negative",
       "src_label": "Bank Indonesia →",
       "src_url": "https://www.bi.go.id/en/publikasi/ruang-media/news-release/default.aspx"
+    },
+    {
+      "key": "tourism",
+      "label": "Foreign Tourist Arrivals",
+      "value": "1.25M",
+      "period": "Apr 2026",
+      "change": "▲ +7.2% vs Apr 2025",
+      "dir": "positive",
+      "src_label": "BPS release →",
+      "src_url": "https://www.bps.go.id/en/statistics-table?subject=16"
+    },
+    {
+      "key": "ntp",
+      "label": "Farmer's Terms of Trade (NTP)",
+      "value": "127.73",
+      "period": "May 2026",
+      "change": "▲ +2.49 pts vs Apr 2026",
+      "dir": "positive",
+      "src_label": "BPS release →",
+      "src_url": "https://www.bps.go.id/en/statistics-table?subject=22"
     }
   ],
   "charts": {

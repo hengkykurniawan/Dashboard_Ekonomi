@@ -25,10 +25,16 @@ merge-preserves, so any source failure keeps the last-known value.
 | indicator | var | turvar | national vervar | check |
 |---|---|---|---|---|
 | GDP growth (y-on-y) | 104 | 5 | 99003 | 5.61% Q1 2026 ✓ |
+| GDP growth (q-on-q) | 104 | 4 | 99003 | −0.77% Q1 2026 ✓ |
 | Inflation (y-on-y) | 2249 | 0 | 151 | 3.08% May 2026 ✓ |
 | Unemployment (TPT) | 543 | 0 | 9999 | 4.68% Feb 2026 ✓ |
 | Poverty (P0) | 184 | 0 | 3 (Kota+Desa) | 8.25% Sep 2025 ✓ |
 | Trade balance | 498 (+196/497) | 0 | 9999 | +$0.09B Apr 2026 ✓ |
+| Foreign tourist arrivals | 1470 | 0 | 248 (Grand Total) | 1.25M Apr 2026 ✓ |
+| Farmer's Terms of Trade (NTP) | 1717 | 1390 | 22 | 127.73 May 2026 ✓ |
+
+Note: inflation components (core / administered / volatile food) are **not**
+exposed by the WebAPI — only in BPS press releases — so they can't be wired.
 
 Note: auto-generated KPI `period`/`change` are clean and accurate but drop some
 hand-authored extras (e.g. "· CPI 111.40", "· 7.24M unemployed"); those came
