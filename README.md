@@ -83,8 +83,9 @@ The dashboard reads its figures from **`data.json`**, which is refreshed by
 
 | Panel | Source | Auto? |
 | --- | --- | --- |
-| GDP growth (y-o-y **and** q-o-q) | BPS WebAPI | ✅ daily |
+| GDP growth (y-o-y **and** q-o-q), household consumption | BPS WebAPI | ✅ daily |
 | Inflation, unemployment, poverty, trade | BPS WebAPI | ✅ daily |
+| Producer Price Index, Wholesale Price Index (IHPB), manufacturing output | BPS WebAPI | ✅ daily |
 | Foreign tourist arrivals, Farmer's Terms of Trade (NTP) | BPS WebAPI | ✅ daily |
 | USD/IDR (reference rate) | [Frankfurter](https://frankfurter.dev/) (ECB) | ✅ daily |
 | BI-Rate (policy rate) | Bank Indonesia | ✍️ semi-manual |

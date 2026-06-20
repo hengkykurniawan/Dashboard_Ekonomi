@@ -27,6 +27,12 @@ from bps_api import BPSClient, parse_series
 
 DATA_FILE = Path(__file__).with_name("data.json")
 
+# Windows consoles default to cp1252; ensure Unicode (−, ▲, …) prints cleanly.
+try:
+    sys.stdout.reconfigure(encoding="utf-8")
+except Exception:
+    pass
+
 # ---------------------------------------------------------------------------
 # Validated BPS mappings (each confirmed against the known headline figure).
 #   var/turvar/vervar : national series selector
@@ -44,6 +50,14 @@ INDICATORS = {
     "tourism":      dict(var=1470, turvar="0", vervar="248",   ptype="M", kind="count_m", good="up",
                          compare=12, chart=None,               field=None,     points=0),
     "ntp":          dict(var=1717, turvar="1390", vervar="22", ptype="M", kind="index",   good="up",
+                         compare=1, chart=None,                field=None,     points=0),
+    "gdp_hh":       dict(var=108,  turvar="5", vervar="100",   ptype="Q", kind="percent", good="up",
+                         compare=4, chart=None,                field=None,     points=0),
+    "ppi":          dict(var=2276, turvar="0", vervar="1",     ptype="Q", kind="percent", good="down",
+                         compare=1, chart=None,                field=None,     points=0),
+    "ihpb":         dict(var=2498, turvar="0", vervar="6",     ptype="M", kind="index",   good="down",
+                         compare=1, chart=None,                field=None,     points=0),
+    "mfg":          dict(var=89,   turvar="0", vervar="2",     ptype="Q", kind="percent", good="up",
                          compare=1, chart=None,                field=None,     points=0),
     "inflation":    dict(var=2249, turvar="0", vervar="151",   ptype="M", kind="percent", good="down",
                          compare=1, chart="inflation_monthly", field="yoy",    points=9),

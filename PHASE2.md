@@ -32,6 +32,10 @@ merge-preserves, so any source failure keeps the last-known value.
 | Trade balance | 498 (+196/497) | 0 | 9999 | +$0.09B Apr 2026 ✓ |
 | Foreign tourist arrivals | 1470 | 0 | 248 (Grand Total) | 1.25M Apr 2026 ✓ |
 | Farmer's Terms of Trade (NTP) | 1717 | 1390 | 22 | 127.73 May 2026 ✓ |
+| Household consumption (y-on-y) | 108 | 5 | 100 | 5.52% Q1 2026 ✓ |
+| Producer Price Index (y-on-y) | 2276 | 0 | 1 (Indeks Umum) | 3.15% Q1 2026 ✓ |
+| Wholesale Price Index (IHPB) | 2498 | 0 | 6 (Indeks Umum Nasional) | 110.63 May 2026 ✓ |
+| Manufacturing output (q-on-q) | 89 | 0 | 2 (Pertumbuhan) | −3.82% Q1 2026 ✓ |
 
 Note: inflation components (core / administered / volatile food) are **not**
 exposed by the WebAPI — only in BPS press releases — so they can't be wired.
