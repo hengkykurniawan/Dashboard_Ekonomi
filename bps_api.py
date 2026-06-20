@@ -67,9 +67,18 @@ class BPSClient:
         return self._get(f"list/model/var/lang/ind/domain/{self.domain}{sub}/page/{page}")
 
     # ---- dynamic data ----
-    def data(self, var: int | str) -> dict:
-        """Raw dynamic-data payload for a variable id (national domain)."""
-        return self._get(f"list/model/data/lang/ind/domain/{self.domain}/var/{var}")
+    def periods(self, var: int | str) -> dict:
+        """List the available period (th) ids for a variable."""
+        return self._get(f"list/model/th/lang/ind/domain/{self.domain}/var/{var}")
+
+    def data(self, var: int | str, th: str = "0") -> dict:
+        """
+        Raw dynamic-data payload for a variable id (national domain).
+
+        `th` is the BPS period id selection (required by the API): a single id,
+        a colon range ("119:126"), or semicolon list ("124;125;126").
+        """
+        return self._get(f"list/model/data/lang/ind/domain/{self.domain}/var/{var}/th/{th}")
 
 
 def parse_series(payload: dict, turvar: str = "0", vervar: str | None = None) -> list[tuple]:
