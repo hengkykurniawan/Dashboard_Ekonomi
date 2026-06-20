@@ -100,8 +100,9 @@ have no free API either.
 > **Inflation breakdown:** the **by-category** split (11 COICOP groups — food,
 > transport, personal care, …) **is** in the WebAPI and is charted as a ranked
 > bar (auto-updates daily). The **by-component** split (core / administered /
-> volatile-food) is **not** in the WebAPI — BPS only publishes that in press
-> releases — so it can't be auto-fetched.
+> volatile-food) is **not** in the WebAPI — BPS only publishes it in the press
+> release — so it's shown as a **semi-manual** latest-month inset under the
+> inflation trend chart (`inflation_components` in `data.json`), updated monthly.
 
 **Updating the semi-manual panels** (edit the matching `kpis[]` entry in
 `data.json` — `value`, `period`, `change` — then commit; the pipeline preserves
@@ -109,6 +110,8 @@ them in between):
 - **BI-Rate** (`birate`): on RDG meeting days; also append the month to `charts.birate`.
 - **Foreign reserves** (`reserves`): monthly, when BI publishes (~7th).
 - **Inflation target** (`inflation_target`): yearly, when BI revises the target.
+- **Inflation components** (`inflation_components`): monthly, from the BPS
+  inflation press release — set `month`, `core`, `administered`, `volatile`.
 
 **Local testing of the fetcher**: put your key in `bps_key.txt` (gitignored),
 then `pip install -r requirements.txt && python update_dashboard.py --dry-run --verbose`.

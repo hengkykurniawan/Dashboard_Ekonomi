@@ -99,6 +99,14 @@ body {
 .chart-container .chart-sub a:hover { text-decoration: underline; }
 .chart-wrap { position: relative; height: 300px; }
 
+.comp-breakdown { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 12px; font-size: 12px; }
+.comp-breakdown .lbl { color: var(--text-secondary); font-weight: 600; }
+.comp-breakdown .comp { padding: 3px 10px; border-radius: 12px; background: #f1f3f5; font-weight: 500; white-space: nowrap; }
+.comp-breakdown .comp::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
+.comp-breakdown .comp.core::before { background: var(--color-1); }
+.comp-breakdown .comp.admin::before { background: var(--color-2); }
+.comp-breakdown .comp.volatile::before { background: var(--color-4); }
+
 .table-section {
     background: var(--bg-card);
     border-radius: var(--radius);
@@ -185,6 +193,7 @@ body {
             <h3>Monthly Inflation (y-on-y)</h3>
             <div class="chart-sub">Percent, Sep 2025 – May 2026 · Feb 2026 spike reflects low base from Feb 2025 electricity-tariff discount · <a href="https://www.bps.go.id/en/statistics-table/2/MSMy/inflasi--umum-.html" target="_blank" rel="noopener">BPS inflation table</a></div>
             <div class="chart-wrap"><canvas id="inflation-chart"></canvas></div>
+            <div class="comp-breakdown" id="infl-components"></div>
         </div>
     </section>
 
@@ -316,6 +325,16 @@ function nice(vals, { pad = 0.12, zero = false, round = 0.5 } = {}) {
 function renderMeta(meta) {
     document.getElementById('meta-compiled').textContent = meta.compiled || '—';
     document.getElementById('meta-latest').textContent = meta.latest_note || '—';
+}
+
+function renderInflationComponents(comp) {
+    const el = document.getElementById('infl-components');
+    if (!el) return;
+    if (!comp) { el.style.display = 'none'; return; }
+    el.innerHTML = `<span class="lbl">By component (${comp.month}, y-o-y):</span>`
+        + `<span class="comp core">Core ${comp.core.toFixed(2)}%</span>`
+        + `<span class="comp admin">Administered ${comp.administered.toFixed(2)}%</span>`
+        + `<span class="comp volatile">Volatile food ${comp.volatile.toFixed(2)}%</span>`;
 }
 
 function renderKPIs(kpis) {
@@ -539,6 +558,7 @@ fetch('data.json', { cache: 'no-store' })
     .then(d => {
         renderMeta(d.meta || {});
         renderKPIs(d.kpis || []);
+        renderInflationComponents(d.inflation_components);
         buildCharts(d.charts || {});
     })
     .catch(err => {
