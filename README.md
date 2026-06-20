@@ -101,8 +101,10 @@ have no free API either.
 > transport, personal care, …) **is** in the WebAPI and is charted as a ranked
 > bar (auto-updates daily). The **by-component** split (core / administered /
 > volatile-food) is **not** in the WebAPI — BPS only publishes it in the press
-> release — so it's shown as a **semi-manual** latest-month inset under the
-> inflation trend chart (`inflation_components` in `data.json`), updated monthly.
+> release — so it's a **semi-manual growing series**: `inflation_components.series`
+> in `data.json` holds one verified month per key, drawn as **lines on the
+> inflation trend chart** (plus a latest-month inset). Add a month each release
+> and the lines extend.
 
 **Updating the semi-manual panels** (edit the matching `kpis[]` entry in
 `data.json` — `value`, `period`, `change` — then commit; the pipeline preserves
@@ -110,8 +112,9 @@ them in between):
 - **BI-Rate** (`birate`): on RDG meeting days; also append the month to `charts.birate`.
 - **Foreign reserves** (`reserves`): monthly, when BI publishes (~7th).
 - **Inflation target** (`inflation_target`): yearly, when BI revises the target.
-- **Inflation components** (`inflation_components`): monthly, from the BPS
-  inflation press release — set `month`, `core`, `administered`, `volatile`.
+- **Inflation components** (`inflation_components.series`): each month, append a
+  key matching the inflation chart labels (e.g. `"Jun-26": {core, administered,
+  volatile}`) with the three y-o-y values from the BPS press release.
 
 **Local testing of the fetcher**: put your key in `bps_key.txt` (gitignored),
 then `pip install -r requirements.txt && python update_dashboard.py --dry-run --verbose`.
