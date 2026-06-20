@@ -62,10 +62,10 @@ body {
     box-shadow: 0 1px 3px rgba(0,0,0,0.08);
     border-top: 3px solid var(--color-1);
 }
-.kpi-card:nth-child(2) { border-top-color: var(--color-2); }
-.kpi-card:nth-child(3) { border-top-color: var(--color-3); }
-.kpi-card:nth-child(4) { border-top-color: var(--color-4); }
-.kpi-card:nth-child(5) { border-top-color: var(--color-5); }
+.kpi-card:nth-child(5n+2) { border-top-color: var(--color-2); }
+.kpi-card:nth-child(5n+3) { border-top-color: var(--color-3); }
+.kpi-card:nth-child(5n+4) { border-top-color: var(--color-4); }
+.kpi-card:nth-child(5n+5) { border-top-color: var(--color-5); }
 .kpi-label {
     font-size: 12px;
     color: var(--text-secondary);

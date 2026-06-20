@@ -86,15 +86,22 @@ The dashboard reads its figures from **`data.json`**, which is refreshed by
 | GDP, inflation, unemployment, poverty, trade | BPS WebAPI | ✅ daily |
 | USD/IDR (reference rate) | [Frankfurter](https://frankfurter.dev/) (ECB) | ✅ daily |
 | BI-Rate (policy rate) | Bank Indonesia | ✍️ semi-manual |
+| JISDOR (official fixing) | Bank Indonesia | ✍️ semi-manual |
+| Foreign reserves | Bank Indonesia | ✍️ semi-manual (monthly) |
+| Inflation target | Bank Indonesia | ✍️ static (annual policy) |
 
 The BPS variable mappings are validated and documented in [PHASE2.md](PHASE2.md).
 USD/IDR is a market reference rate (ECB via Frankfurter), **not** the official
-BI JISDOR fixing — JISDOR has no usable API. BI-Rate only moves at the monthly
-RDG board meeting, so it isn't scraped.
+BI JISDOR fixing — JISDOR has no usable API, so it's a separate semi-manual
+panel. The other Bank Indonesia series have no free API either.
 
-**Updating BI-Rate** (a few times a year, on RDG meeting days): edit `data.json`
-— the `birate` KPI (`value`, `period`, `change`) and append the new month to
-`charts.birate` — then commit. The pipeline preserves it in between.
+**Updating the semi-manual panels** (edit the matching `kpis[]` entry in
+`data.json` — `value`, `period`, `change` — then commit; the pipeline preserves
+them in between):
+- **BI-Rate** (`birate`): on RDG meeting days; also append the month to `charts.birate`.
+- **JISDOR** (`jisdor`): the official daily fixing, when you want it refreshed.
+- **Foreign reserves** (`reserves`): monthly, when BI publishes (~7th).
+- **Inflation target** (`inflation_target`): yearly, when BI revises the target.
 
 **Local testing of the fetcher**: put your key in `bps_key.txt` (gitignored),
 then `pip install -r requirements.txt && python update_dashboard.py --dry-run --verbose`.

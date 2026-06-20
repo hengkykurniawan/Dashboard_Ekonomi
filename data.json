@@ -79,6 +79,36 @@
       "dir": "negative",
       "src_label": "Frankfurter (ECB) →",
       "src_url": "https://www.frankfurter.dev/"
+    },
+    {
+      "key": "jisdor",
+      "label": "Rupiah / US$ (JISDOR)",
+      "value": "Rp17,826",
+      "period": "18 Jun 2026",
+      "change": "Official BI fixing",
+      "dir": "negative",
+      "src_label": "Bank Indonesia →",
+      "src_url": "https://www.bi.go.id/en/statistik/informasi-kurs/jisdor/default.aspx"
+    },
+    {
+      "key": "reserves",
+      "label": "Foreign Reserves",
+      "value": "$144.9B",
+      "period": "May 2026 · 5.6 mo imports",
+      "change": "▼ −$1.3B vs Apr 2026",
+      "dir": "negative",
+      "src_label": "Bank Indonesia →",
+      "src_url": "https://www.bi.go.id/en/publikasi/ruang-media/news-release/default.aspx"
+    },
+    {
+      "key": "inflation_target",
+      "label": "Inflation Target",
+      "value": "2.5% ±1%",
+      "period": "2026 · range 1.5–3.5%",
+      "change": "Actual 3.08% — within range",
+      "dir": "positive",
+      "src_label": "Bank Indonesia →",
+      "src_url": "https://www.bi.go.id/en/fungsi-utama/moneter/inflasi/default.aspx"
     }
   ],
   "charts": {
