@@ -339,6 +339,16 @@
   "inflation_components": {
     "_note": "Semi-manual: the core/administered/volatile split is NOT in the BPS WebAPI (press-release only). Append a month key matching the inflation_monthly labels (e.g. 'Jun-26') with the three y-o-y values from the BPS release; the lines grow automatically.",
     "series": {
+      "Dec-25": {
+        "core": 2.38,
+        "administered": 1.93,
+        "volatile": 6.21
+      },
+      "Jan-26": {
+        "core": 2.45,
+        "administered": 9.71,
+        "volatile": 1.14
+      },
       "Feb-26": {
         "core": 2.63,
         "administered": 12.66,
