@@ -31,6 +31,16 @@
       "src_url": "https://www.bps.go.id/id/pressrelease/2026/06/02/2579/inflasi-year-on-year--y-on-y--pada-mei-2026-sebesar-3-08-persen-.html"
     },
     {
+      "key": "inflation_target",
+      "label": "Inflation Target",
+      "value": "2.5% ±1%",
+      "period": "2026 · range 1.5–3.5%",
+      "change": "Actual 3.08% — within range",
+      "dir": "positive",
+      "src_label": "Bank Indonesia →",
+      "src_url": "https://www.bi.go.id/en/fungsi-utama/moneter/inflasi/default.aspx"
+    },
+    {
       "key": "unemployment",
       "label": "Unemployment Rate",
       "value": "4.68%",
@@ -81,16 +91,6 @@
       "src_url": "https://www.frankfurter.dev/"
     },
     {
-      "key": "jisdor",
-      "label": "Rupiah / US$ (JISDOR)",
-      "value": "Rp17,826",
-      "period": "18 Jun 2026",
-      "change": "Official BI fixing",
-      "dir": "negative",
-      "src_label": "Bank Indonesia →",
-      "src_url": "https://www.bi.go.id/en/statistik/informasi-kurs/jisdor/default.aspx"
-    },
-    {
       "key": "reserves",
       "label": "Foreign Reserves",
       "value": "$144.9B",
@@ -99,16 +99,6 @@
       "dir": "negative",
       "src_label": "Bank Indonesia →",
       "src_url": "https://www.bi.go.id/en/publikasi/ruang-media/news-release/default.aspx"
-    },
-    {
-      "key": "inflation_target",
-      "label": "Inflation Target",
-      "value": "2.5% ±1%",
-      "period": "2026 · range 1.5–3.5%",
-      "change": "Actual 3.08% — within range",
-      "dir": "positive",
-      "src_label": "Bank Indonesia →",
-      "src_url": "https://www.bi.go.id/en/fungsi-utama/moneter/inflasi/default.aspx"
     }
   ],
   "charts": {
