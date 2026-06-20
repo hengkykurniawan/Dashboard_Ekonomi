@@ -79,22 +79,25 @@ The dashboard reads its figures from **`data.json`**, which is refreshed by
 - **Local testing:** put the key in a file named `bps_key.txt` (gitignored), or
   set `$env:BPS_API_KEY` in PowerShell.
 
-**Phase 2 — activating the live fetch**
+**What updates automatically**
 
-The pipeline ships in a safe "preserve" mode. To turn on live BPS fetching:
+| Panel | Source | Auto? |
+| --- | --- | --- |
+| GDP, inflation, unemployment, poverty, trade | BPS WebAPI | ✅ daily |
+| USD/IDR (reference rate) | [Frankfurter](https://frankfurter.dev/) (ECB) | ✅ daily |
+| BI-Rate (policy rate) | Bank Indonesia | ✍️ semi-manual |
 
-1. Add your key locally (`bps_key.txt`) and run the discovery helper:
-   ```bash
-   pip install -r requirements.txt
-   python discover_bps.py
-   ```
-2. Copy the reported `var` ids into the `INDICATORS` table in
-   `update_dashboard.py` (replace the `None` placeholders).
-3. Test: `python update_dashboard.py --dry-run --verbose`.
+The BPS variable mappings are validated and documented in [PHASE2.md](PHASE2.md).
+USD/IDR is a market reference rate (ECB via Frankfurter), **not** the official
+BI JISDOR fixing — JISDOR has no usable API. BI-Rate only moves at the monthly
+RDG board meeting, so it isn't scraped.
 
-The two **monetary** panels (BI-Rate, Rupiah/US$ JISDOR) come from Bank
-Indonesia, which has no clean JSON API; wiring that source is the remaining
-Phase 2 task (`update_monetary()` in `update_dashboard.py`).
+**Updating BI-Rate** (a few times a year, on RDG meeting days): edit `data.json`
+— the `birate` KPI (`value`, `period`, `change`) and append the new month to
+`charts.birate` — then commit. The pipeline preserves it in between.
+
+**Local testing of the fetcher**: put your key in `bps_key.txt` (gitignored),
+then `pip install -r requirements.txt && python update_dashboard.py --dry-run --verbose`.
 
 ## Sources
 

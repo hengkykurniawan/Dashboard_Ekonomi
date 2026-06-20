@@ -185,14 +185,58 @@ def update_bps(data: dict, verbose: bool) -> list[str]:
     return warnings
 
 
+FX_API = "https://api.frankfurter.dev/v1/latest?base=USD&symbols=IDR"
+FX_POINTS = 12   # rolling window kept in the chart
+
+
 def update_monetary(data: dict, verbose: bool) -> list[str]:
     """
-    Bank Indonesia BI-Rate + JISDOR.
+    Monetary panels.
 
-    Phase 2 (next): BI has no clean JSON API, so this will scrape the BI
-    statistics / JISDOR pages. Until then, monetary values are preserved.
+    - USD/IDR: auto-fetched daily from Frankfurter (ECB reference rate). This is
+      a market reference, NOT the official BI JISDOR fixing — the panel is
+      labeled accordingly.
+    - BI-Rate: semi-manual. It changes only at the monthly RDG board meeting, so
+      it is kept in data.json and preserved here; bump it on a meeting day.
     """
-    return ["Monetary (BI-Rate, JISDOR): source not wired yet (Phase 2) — preserved."]
+    warnings: list[str] = ["BI-Rate: semi-manual — preserved (update on RDG meeting days)."]
+    kpis = kpi_index(data)
+    try:
+        import requests
+        r = requests.get(FX_API, timeout=30, headers={"User-Agent": "Dashboard_Ekonomi/1.0"})
+        r.raise_for_status()
+        j = r.json()
+        rate = float(j["rates"]["IDR"])
+        d = dt.date.fromisoformat(j["date"])
+        period = f"{d.day} {d:%b} {d.year}"
+        clabel = f"{d.day} {d:%b}"
+
+        fx = kpis.get("fx")
+        if fx:
+            fx["value"] = f"Rp{rate:,.0f}"
+            fx["period"] = period
+            base = data.get("meta", {}).get("fx_baseline", {})
+            if base.get("rate"):
+                pct = (rate - base["rate"]) / base["rate"] * 100
+                sign = "+" if pct >= 0 else "−"
+                fx["change"] = f"{arrow(pct)} {sign}{abs(pct):.1f}% YTD vs {base.get('label', '')}"
+                fx["dir"] = direction(pct, "down")   # weaker rupiah (higher rate) = bad
+
+        ch = data["charts"].setdefault("fx", {})
+        labels = list(ch.get("labels", []))
+        rates = list(ch.get("rate", []))
+        if labels and labels[-1] == clabel:          # same day → update in place
+            rates[-1] = round(rate)
+        else:                                          # new day → append
+            labels.append(clabel)
+            rates.append(round(rate))
+        ch["labels"] = labels[-FX_POINTS:]
+        ch["rate"] = rates[-FX_POINTS:]
+        if verbose:
+            log(f"FX:usd_idr: Rp{rate:,.0f} @ {period}  (Frankfurter/ECB)")
+    except Exception as e:
+        warnings.append(f"FX:usd_idr: {e} — preserved.")
+    return warnings
 
 
 def main() -> int:

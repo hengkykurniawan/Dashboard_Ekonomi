@@ -3,7 +3,11 @@
     "compiled": "19 June 2026",
     "latest_note": "BI-Rate hike 18 Jun · inflation & trade 2 Jun",
     "generated_at": "2026-06-20",
-    "generator": "update_dashboard.py"
+    "generator": "update_dashboard.py",
+    "fx_baseline": {
+      "rate": 16720,
+      "label": "Rp16,720"
+    }
   },
   "kpis": [
     {
@@ -68,13 +72,13 @@
     },
     {
       "key": "fx",
-      "label": "Rupiah / US$ (JISDOR)",
-      "value": "Rp17,826",
-      "period": "18 Jun 2026",
-      "change": "▼ −6.4% YTD vs Rp16,720",
+      "label": "USD/IDR (reference rate)",
+      "value": "Rp17,808",
+      "period": "19 Jun 2026",
+      "change": "▲ +6.5% YTD vs Rp16,720",
       "dir": "negative",
-      "src_label": "Bank Indonesia →",
-      "src_url": "https://www.bi.go.id/id/statistik/informasi-kurs/jisdor/default.aspx"
+      "src_label": "Frankfurter (ECB) →",
+      "src_url": "https://www.frankfurter.dev/"
     }
   ],
   "charts": {
@@ -180,7 +184,8 @@
         "27 Apr",
         "2 Jun",
         "8 Jun",
-        "18 Jun"
+        "18 Jun",
+        "19 Jun"
       ],
       "rate": [
         16720,
@@ -189,7 +194,8 @@
         17206,
         17863,
         18095,
-        17826
+        17826,
+        17808
       ]
     },
     "birate": {

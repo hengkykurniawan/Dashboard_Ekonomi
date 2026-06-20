@@ -1,12 +1,24 @@
 # Phase 2 — wiring the live BPS / Bank Indonesia fetch
 
-Status: **5 BPS indicators LIVE and validated; Bank Indonesia monetary still to wire.**
+Status: **complete.** 5 BPS indicators + USD/IDR fetch live; BI-Rate semi-manual.
 
-The daily pipeline now fetches GDP, inflation, unemployment, poverty and trade
-from the BPS WebAPI (each mapping validated against its known headline figure —
-see the table below). The two monetary panels (BI-Rate, JISDOR) are still
-preserved from `data.json` until the Bank Indonesia source is wired. The
-fetcher always merge-preserves, so any source failure keeps the last-known value.
+The daily pipeline fetches GDP, inflation, unemployment, poverty and trade from
+the BPS WebAPI (each mapping validated against its known headline figure — see
+the table below) and USD/IDR from Frankfurter (ECB). BI-Rate is kept in
+`data.json` and bumped by hand on RDG meeting days. The fetcher always
+merge-preserves, so any source failure keeps the last-known value.
+
+## Monetary sources
+
+- **USD/IDR** — auto-fetched daily from [Frankfurter](https://frankfurter.dev/)
+  (ECB reference, keyless JSON). This is a *market reference rate*, not the
+  official BI JISDOR fixing (which has no usable API — static HTML behind a WAF,
+  and BI's SOAP service is unreliable). The panel is labeled accordingly. The
+  chart keeps a rolling 12-point window; YTD % is vs `meta.fx_baseline`.
+- **BI-Rate** — semi-manual. It only changes at the monthly RDG board meeting,
+  so there's no daily source worth scraping. To update it, edit the `birate`
+  KPI (`value`, `period`, `change`) and append to `charts.birate` in
+  `data.json`. The pipeline preserves it between edits.
 
 ## Live BPS mappings (validated)
 
@@ -48,6 +60,9 @@ from additional variables and can be re-added later if wanted.
 ## Remaining work
 
 1. ~~Identify + validate BPS variables~~ — **done** (table above).
-2. Wire `update_monetary()` for BI-Rate + JISDOR (Bank Indonesia has no clean
-   JSON API — likely a small HTML/endpoint scrape; keep it merge-preserving).
-   Until then those two panels show the last committed values.
+2. ~~Wire monetary~~ — **done**: USD/IDR auto via Frankfurter; BI-Rate semi-manual.
+
+Optional future polish: re-add the hand-authored KPI extras dropped during
+automation ("· CPI 111.40", "· 7.24M unemployed", "· Jan–Apr: +$5.64B") by
+fetching the supporting BPS variables; refresh the BPS press-release `src_url`s
+from the latest releases.
