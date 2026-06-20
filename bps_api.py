@@ -71,6 +71,14 @@ class BPSClient:
         """List the available period (th) ids for a variable."""
         return self._get(f"list/model/th/lang/ind/domain/{self.domain}/var/{var}")
 
+    def recent_th(self, var: int | str, years: int = 3) -> str:
+        """Semicolon list of the most recent `years` BPS period ids for a variable."""
+        payload = self.periods(var)
+        data = payload.get("th") or payload.get("data") or []
+        rows = data[1] if isinstance(data, list) and len(data) > 1 else data
+        ids = [str(r["th_id"]) for r in rows][:years]
+        return ";".join(ids) if ids else "0"
+
     def data(self, var: int | str, th: str = "0") -> dict:
         """
         Raw dynamic-data payload for a variable id (national domain).
