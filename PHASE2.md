@@ -36,8 +36,12 @@ merge-preserves, so any source failure keeps the last-known value.
 | Producer Price Index (y-on-y) | 2276 | 0 | 1 (Indeks Umum) | 3.15% Q1 2026 ✓ |
 | Wholesale Price Index (IHPB) | 2498 | 0 | 6 (Indeks Umum Nasional) | 110.63 May 2026 ✓ |
 | Manufacturing output (q-on-q) | 89 | 0 | 2 (Pertumbuhan) | −3.82% Q1 2026 ✓ |
+| Inflation by category (chart) | 2250–2260 | first turvar | 151 | 11 COICOP groups ✓ |
 
-Note: inflation components (core / administered / volatile food) are **not**
+The inflation-by-category chart fetches the 11 y-on-y group variables (2250–2260),
+each at its national row (vervar 151) and group-total turvar, then ranks them.
+
+Note: inflation **components** (core / administered / volatile food) are **not**
 exposed by the WebAPI — only in BPS press releases — so they can't be wired.
 
 Note: auto-generated KPI `period`/`change` are clean and accurate but drop some

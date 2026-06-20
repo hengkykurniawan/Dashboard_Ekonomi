@@ -97,9 +97,11 @@ USD/IDR is a market reference rate (ECB via Frankfurter), **not** the official
 BI JISDOR fixing — JISDOR has no usable API. The other Bank Indonesia series
 have no free API either.
 
-> **Inflation components** (core / administered / volatile-food) are **not**
-> available in the BPS WebAPI — BPS only publishes that split in its press
-> releases, so it can't be auto-fetched. The headline y-o-y inflation is wired.
+> **Inflation breakdown:** the **by-category** split (11 COICOP groups — food,
+> transport, personal care, …) **is** in the WebAPI and is charted as a ranked
+> bar (auto-updates daily). The **by-component** split (core / administered /
+> volatile-food) is **not** in the WebAPI — BPS only publishes that in press
+> releases — so it can't be auto-fetched.
 
 **Updating the semi-manual panels** (edit the matching `kpis[]` entry in
 `data.json` — `value`, `period`, `change` — then commit; the pipeline preserves

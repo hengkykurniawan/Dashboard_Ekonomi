@@ -69,6 +69,15 @@ INDICATORS = {
 # Trade is special: three variables feed one chart + the balance KPI.
 TRADE = dict(exports=196, imports=497, balance=498, vervar="9999", turvar="0", points=5)
 
+# Inflation by COICOP expenditure group (y-on-y, 2022=100). One var per group;
+# national row = vervar 151, group total = each var's first turvar.
+INFLATION_GROUPS = {
+    2250: "Food & tobacco",   2251: "Clothing",        2252: "Housing & utilities",
+    2253: "Household equip.",  2254: "Health",          2255: "Transport",
+    2256: "Info & comm.",      2257: "Recreation",      2258: "Education",
+    2259: "Restaurants",       2260: "Personal care",
+}
+
 ID_MONTHS = {
     "januari": "Jan", "februari": "Feb", "maret": "Mar", "april": "Apr",
     "mei": "May", "juni": "Jun", "juli": "Jul", "agustus": "Aug",
@@ -217,6 +226,34 @@ def update_bps(data: dict, verbose: bool) -> list[str]:
             warnings.append("BPS:trade: incomplete export/import/balance series — preserved.")
     except Exception as e:
         warnings.append(f"BPS:trade: {e} — preserved.")
+
+    # ---- inflation by expenditure group (one var per category) ----
+    try:
+        rows, month = [], None
+        for var, name in INFLATION_GROUPS.items():
+            payload = client.data(var, th=client.recent_th(var, 2))
+            grp_turvar = str(payload["turvar"][0]["val"])     # first turvar = whole group
+            pts = []
+            for _y, _s, label, val in parse_series(payload, turvar=grp_turvar, vervar="151"):
+                cp = classify_period(label)
+                if cp and cp[2] == "M":
+                    pts.append((cp[0], val))
+            if pts:
+                month, val = pts[-1]
+                rows.append((name, round(val, 2)))
+        if len(rows) == len(INFLATION_GROUPS):
+            rows.sort(key=lambda r: r[1], reverse=True)         # rank highest inflation first
+            data["charts"]["inflation_by_group"] = {
+                "month": month,
+                "labels": [r[0] for r in rows],
+                "yoy": [r[1] for r in rows],
+            }
+            if verbose:
+                log(f"BPS:inflation_by_group: {len(rows)} categories @ {month} (top {rows[0][0]} {rows[0][1]}%)")
+        else:
+            warnings.append(f"BPS:inflation_by_group: only {len(rows)}/{len(INFLATION_GROUPS)} groups — preserved.")
+    except Exception as e:
+        warnings.append(f"BPS:inflation_by_group: {e} — preserved.")
 
     return warnings
 

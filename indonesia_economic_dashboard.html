@@ -189,6 +189,14 @@ body {
     </section>
 
     <section class="chart-row">
+        <div class="chart-container" style="grid-column: 1 / -1;">
+            <h3>Inflation by Expenditure Group (y-on-y) · <span id="infl-group-month">—</span></h3>
+            <div class="chart-sub">Year-on-year inflation across the 11 COICOP spending categories, latest available month · <a href="https://www.bps.go.id/en/statistics-table?subject=3" target="_blank" rel="noopener">BPS inflation data</a></div>
+            <div class="chart-wrap" style="height: 360px;"><canvas id="inflation-group-chart"></canvas></div>
+        </div>
+    </section>
+
+    <section class="chart-row">
         <div class="chart-container">
             <h3>Exports, Imports &amp; Trade Balance</h3>
             <div class="chart-sub">US$ billion, Dec 2025 – Apr 2026 · <a href="https://www.bps.go.id/en/exim" target="_blank" rel="noopener">BPS export–import data</a></div>
@@ -494,6 +502,35 @@ function buildCharts(c) {
             }
         }
     });
+
+    // Inflation by expenditure group (horizontal bar, ranked)
+    const ig = c.inflation_by_group;
+    if (ig && document.getElementById('inflation-group-chart')) {
+        const mEl = document.getElementById('infl-group-month');
+        if (mEl) mEl.textContent = ig.month || '';
+        push('inflation-group-chart', {
+            type: 'bar',
+            data: {
+                labels: ig.labels,
+                datasets: [{
+                    label: 'y-o-y inflation',
+                    data: ig.yoy,
+                    backgroundColor: ig.yoy.map(v => v >= 4 ? '#C44E52CC' : v >= 2 ? '#DD8452CC' : '#4C72B0CC'),
+                    borderColor: ig.yoy.map(v => v >= 4 ? '#C44E52' : v >= 2 ? '#DD8452' : '#4C72B0'),
+                    borderWidth: 1, borderRadius: 4
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true, maintainAspectRatio: false,
+                plugins: { legend: { display: false }, tooltip: pctTooltip },
+                scales: {
+                    x: { ...nice([0, ...ig.yoy], { zero: true, round: 1 }), ticks: { callback: v => v.toFixed(0) + '%' } },
+                    y: { grid: { display: false } }
+                }
+            }
+        });
+    }
 }
 
 // ---- Load data and render ----
