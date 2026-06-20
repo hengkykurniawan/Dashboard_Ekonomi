@@ -1,0 +1,4 @@
+# Normalize line endings: store text as LF in the repo so the Linux CI runner
+# (bash steps in the Actions workflow) never trips over Windows CRLF.
+* text=auto eol=lf
+*.png binary
