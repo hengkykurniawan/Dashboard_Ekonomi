@@ -1,0 +1,47 @@
+name: Update dashboard data
+
+# Runs daily and on manual trigger. Fetches the latest figures and commits
+# data.json if anything changed. With GitHub Pages set to "Deploy from a
+# branch" (main / root), each commit automatically republishes the dashboard.
+
+on:
+  schedule:
+    - cron: "17 1 * * *"   # 01:17 UTC daily (~08:17 WIB)
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-data
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Fetch latest data
+        env:
+          BPS_API_KEY: ${{ secrets.BPS_API_KEY }}
+        run: python update_dashboard.py --verbose
+
+      - name: Commit data.json if it changed
+        run: |
+          if [ -n "$(git status --porcelain data.json)" ]; then
+            git config user.name  "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add data.json
+            git commit -m "chore: auto-update dashboard data ($(date -u +%Y-%m-%d))"
+            git push
+          else
+            echo "No data changes today."
+          fi

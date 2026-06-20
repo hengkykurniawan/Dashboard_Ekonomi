@@ -1,0 +1,108 @@
+{
+  "meta": {
+    "compiled": "19 June 2026",
+    "latest_note": "BI-Rate hike 18 Jun · inflation & trade 2 Jun",
+    "generated_at": "2026-06-19T00:00:00Z",
+    "generator": "manual (initial snapshot)"
+  },
+  "kpis": [
+    {
+      "key": "gdp",
+      "label": "GDP Growth (y-on-y)",
+      "value": "5.61%",
+      "period": "Q1 2026",
+      "change": "▲ +0.74 pp vs Q1 2025 (4.87%)",
+      "dir": "positive",
+      "src_label": "BPS release →",
+      "src_url": "https://www.bps.go.id/id/pressrelease/2026/05/05/2575/ekonomi-indonesia-triwulan-i-2026-tumbuh-5-61-persen--y-on-y-.html"
+    },
+    {
+      "key": "inflation",
+      "label": "Inflation (y-on-y)",
+      "value": "3.08%",
+      "period": "May 2026 · CPI 111.40",
+      "change": "▲ +0.66 pp vs Apr 2026 (2.42%)",
+      "dir": "negative",
+      "src_label": "BPS release →",
+      "src_url": "https://www.bps.go.id/id/pressrelease/2026/06/02/2579/inflasi-year-on-year--y-on-y--pada-mei-2026-sebesar-3-08-persen-.html"
+    },
+    {
+      "key": "unemployment",
+      "label": "Unemployment Rate",
+      "value": "4.68%",
+      "period": "Feb 2026 · 7.24M unemployed",
+      "change": "▼ −0.08 pp vs Feb 2025",
+      "dir": "positive",
+      "src_label": "BPS release →",
+      "src_url": "https://www.bps.go.id/id/pressrelease/2026/05/05/2574/tingkat-pengangguran-terbuka--tpt--sebesar-4-68-persen--rata-rata-upah-buruh-sebesar-3-29-juta-rupiah-.html"
+    },
+    {
+      "key": "poverty",
+      "label": "Poverty Rate",
+      "value": "8.25%",
+      "period": "Sep 2025 · 23.36M people",
+      "change": "▼ −0.32 pp vs Sep 2024",
+      "dir": "positive",
+      "src_label": "BPS release →",
+      "src_url": "https://www.bps.go.id/id/pressrelease/2026/02/05/2536/persentase-penduduk-miskin-september-2025-turun--menjadi-8-25-persen-.html"
+    },
+    {
+      "key": "trade",
+      "label": "Trade Balance",
+      "value": "+$0.09B",
+      "period": "Apr 2026 · Jan–Apr: +$5.64B",
+      "change": "▼ from +$3.32B in Mar 2026",
+      "dir": "negative",
+      "src_label": "BPS release →",
+      "src_url": "https://www.bps.go.id/id/pressrelease/2026/06/02/2583/ekspor-dan-impor-indonesia-april-2026-masing-masing-tercatat-usd-25-30-miliar-dan-usd-25-21-miliar.html"
+    },
+    {
+      "key": "birate",
+      "label": "BI-Rate (policy)",
+      "value": "5.75%",
+      "period": "18 Jun 2026 · was 5.50%",
+      "change": "▲ +25 bps to defend rupiah",
+      "dir": "negative",
+      "src_label": "Bank Indonesia →",
+      "src_url": "https://www.bi.go.id/en/publikasi/ruang-media/news-release/default.aspx"
+    },
+    {
+      "key": "fx",
+      "label": "Rupiah / US$ (JISDOR)",
+      "value": "Rp17,826",
+      "period": "18 Jun 2026",
+      "change": "▼ −6.4% YTD vs Rp16,720",
+      "dir": "negative",
+      "src_label": "Bank Indonesia →",
+      "src_url": "https://www.bi.go.id/id/statistik/informasi-kurs/jisdor/default.aspx"
+    }
+  ],
+  "charts": {
+    "gdp_quarterly": {
+      "labels": ["Q1-24", "Q2-24", "Q3-24", "Q4-24", "Q1-25", "Q2-25", "Q3-25", "Q4-25", "Q1-26"],
+      "growth": [5.11, 5.05, 4.95, 5.02, 4.87, 5.12, 5.04, 5.39, 5.61]
+    },
+    "inflation_monthly": {
+      "labels": ["Sep-25", "Oct-25", "Nov-25", "Dec-25", "Jan-26", "Feb-26", "Mar-26", "Apr-26", "May-26"],
+      "yoy": [2.65, 2.86, 2.72, 2.92, 3.55, 4.76, 3.48, 2.42, 3.08]
+    },
+    "trade_monthly": {
+      "labels": ["Dec-25", "Jan-26", "Feb-26", "Mar-26", "Apr-26"],
+      "exports": [26.35, 22.16, 22.17, 22.53, 25.30],
+      "imports": [23.83, 21.20, 20.89, 19.21, 25.21],
+      "balance": [2.52, 0.96, 1.28, 3.32, 0.09]
+    },
+    "poverty": {
+      "labels": ["Mar-23", "Mar-24", "Sep-24", "Mar-25", "Sep-25"],
+      "rate": [9.36, 9.03, 8.57, 8.47, 8.25]
+    },
+    "fx": {
+      "labels": ["31 Dec", "2 Jan", "20 Mar", "27 Apr", "2 Jun", "8 Jun", "18 Jun"],
+      "rate": [16720, 16674, 16958, 17206, 17863, 18095, 17826]
+    },
+    "birate": {
+      "labels": ["Jan-26", "Feb-26", "Mar-26", "Apr-26", "May-26", "Jun-26"],
+      "rate": [5.50, 5.50, 5.50, 5.50, 5.50, 5.75]
+    }
+  }
+}

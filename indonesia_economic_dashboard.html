@@ -168,62 +168,12 @@ body {
             <div class="subtitle">Source: <a href="https://www.bps.go.id" target="_blank" rel="noopener">Badan Pusat Statistik (BPS) — bps.go.id</a> official statistical releases</div>
         </div>
         <div class="header-right">
-            Data compiled: 19 June 2026<br>
-            Latest: BI-Rate hike 18 Jun · inflation &amp; trade 2 Jun
+            Data compiled: <span id="meta-compiled">—</span><br>
+            Latest: <span id="meta-latest">—</span>
         </div>
     </header>
 
-    <section class="kpi-row">
-        <div class="kpi-card">
-            <div class="kpi-label">GDP Growth (y-on-y)</div>
-            <div class="kpi-value">5.61%</div>
-            <div class="kpi-period">Q1 2026</div>
-            <div class="kpi-change positive">▲ +0.74 pp vs Q1 2025 (4.87%)</div>
-            <a class="src" href="https://www.bps.go.id/id/pressrelease/2026/05/05/2575/ekonomi-indonesia-triwulan-i-2026-tumbuh-5-61-persen--y-on-y-.html" target="_blank" rel="noopener">BPS release →</a>
-        </div>
-        <div class="kpi-card">
-            <div class="kpi-label">Inflation (y-on-y)</div>
-            <div class="kpi-value">3.08%</div>
-            <div class="kpi-period">May 2026 · CPI 111.40</div>
-            <div class="kpi-change negative">▲ +0.66 pp vs Apr 2026 (2.42%)</div>
-            <a class="src" href="https://www.bps.go.id/id/pressrelease/2026/06/02/2579/inflasi-year-on-year--y-on-y--pada-mei-2026-sebesar-3-08-persen-.html" target="_blank" rel="noopener">BPS release →</a>
-        </div>
-        <div class="kpi-card">
-            <div class="kpi-label">Unemployment Rate</div>
-            <div class="kpi-value">4.68%</div>
-            <div class="kpi-period">Feb 2026 · 7.24M unemployed</div>
-            <div class="kpi-change positive">▼ −0.08 pp vs Feb 2025</div>
-            <a class="src" href="https://www.bps.go.id/id/pressrelease/2026/05/05/2574/tingkat-pengangguran-terbuka--tpt--sebesar-4-68-persen--rata-rata-upah-buruh-sebesar-3-29-juta-rupiah-.html" target="_blank" rel="noopener">BPS release →</a>
-        </div>
-        <div class="kpi-card">
-            <div class="kpi-label">Poverty Rate</div>
-            <div class="kpi-value">8.25%</div>
-            <div class="kpi-period">Sep 2025 · 23.36M people</div>
-            <div class="kpi-change positive">▼ −0.32 pp vs Sep 2024</div>
-            <a class="src" href="https://www.bps.go.id/id/pressrelease/2026/02/05/2536/persentase-penduduk-miskin-september-2025-turun--menjadi-8-25-persen-.html" target="_blank" rel="noopener">BPS release →</a>
-        </div>
-        <div class="kpi-card">
-            <div class="kpi-label">Trade Balance</div>
-            <div class="kpi-value">+$0.09B</div>
-            <div class="kpi-period">Apr 2026 · Jan–Apr: +$5.64B</div>
-            <div class="kpi-change negative">▼ from +$3.32B in Mar 2026</div>
-            <a class="src" href="https://www.bps.go.id/id/pressrelease/2026/06/02/2583/ekspor-dan-impor-indonesia-april-2026-masing-masing-tercatat-usd-25-30-miliar-dan-usd-25-21-miliar.html" target="_blank" rel="noopener">BPS release →</a>
-        </div>
-        <div class="kpi-card">
-            <div class="kpi-label">BI-Rate (policy)</div>
-            <div class="kpi-value">5.75%</div>
-            <div class="kpi-period">18 Jun 2026 · was 5.50%</div>
-            <div class="kpi-change negative">▲ +25 bps to defend rupiah</div>
-            <a class="src" href="https://www.bi.go.id/en/publikasi/ruang-media/news-release/default.aspx" target="_blank" rel="noopener">Bank Indonesia →</a>
-        </div>
-        <div class="kpi-card">
-            <div class="kpi-label">Rupiah / US$ (JISDOR)</div>
-            <div class="kpi-value">Rp17,826</div>
-            <div class="kpi-period">18 Jun 2026</div>
-            <div class="kpi-change negative">▼ −6.4% YTD vs Rp16,720</div>
-            <a class="src" href="https://www.bi.go.id/id/statistik/informasi-kurs/jisdor/default.aspx" target="_blank" rel="noopener">Bank Indonesia →</a>
-        </div>
-    </section>
+    <section class="kpi-row" id="kpi-row"><!-- populated from data.json --></section>
 
     <section class="chart-row">
         <div class="chart-container">
@@ -339,200 +289,230 @@ body {
 <script>
 const COLORS = ['#4C72B0', '#DD8452', '#55A868', '#C44E52', '#8172B3'];
 
-// ---- Embedded BPS data ----
-const GDP_QUARTERLY = {
-    labels: ['Q1-24','Q2-24','Q3-24','Q4-24','Q1-25','Q2-25','Q3-25','Q4-25','Q1-26'],
-    growth: [5.11, 5.05, 4.95, 5.02, 4.87, 5.12, 5.04, 5.39, 5.61]
-};
-const INFLATION_MONTHLY = {
-    labels: ['Sep-25','Oct-25','Nov-25','Dec-25','Jan-26','Feb-26','Mar-26','Apr-26','May-26'],
-    yoy: [2.65, 2.86, 2.72, 2.92, 3.55, 4.76, 3.48, 2.42, 3.08]
-};
-const TRADE_MONTHLY = {
-    labels: ['Dec-25','Jan-26','Feb-26','Mar-26','Apr-26'],
-    exports: [26.35, 22.16, 22.17, 22.53, 25.30],
-    imports: [23.83, 21.20, 20.89, 19.21, 25.21],
-    balance: [2.52, 0.96, 1.28, 3.32, 0.09]
-};
-const POVERTY = {
-    labels: ['Mar-23','Mar-24','Sep-24','Mar-25','Sep-25'],
-    rate: [9.36, 9.03, 8.57, 8.47, 8.25]
-};
-// Bank Indonesia (monetary) — NOT BPS
-const FX = {
-    labels: ['31 Dec','2 Jan','20 Mar','27 Apr','2 Jun','8 Jun','18 Jun'],
-    rate: [16720, 16674, 16958, 17206, 17863, 18095, 17826]
-};
-const BIRATE = {
-    labels: ['Jan-26','Feb-26','Mar-26','Apr-26','May-26','Jun-26'],
-    rate: [5.50, 5.50, 5.50, 5.50, 5.50, 5.75]
-};
-
 const pctTooltip = {
     callbacks: { label: ctx => `${ctx.dataset.label}: ${ctx.parsed.y.toFixed(2)}%` }
 };
 
-// GDP bar chart
-new Chart(document.getElementById('gdp-chart'), {
-    type: 'bar',
-    data: {
-        labels: GDP_QUARTERLY.labels,
-        datasets: [{
-            label: 'GDP growth y-on-y',
-            data: GDP_QUARTERLY.growth,
-            backgroundColor: GDP_QUARTERLY.labels.map(l => l === 'Q1-26' ? '#DD8452CC' : '#4C72B0CC'),
-            borderColor: GDP_QUARTERLY.labels.map(l => l === 'Q1-26' ? '#DD8452' : '#4C72B0'),
-            borderWidth: 1,
-            borderRadius: 4
-        }]
-    },
-    options: {
-        responsive: true, maintainAspectRatio: false,
-        plugins: { legend: { display: false }, tooltip: pctTooltip },
-        scales: {
-            x: { grid: { display: false } },
-            y: { min: 4.4, max: 5.8, ticks: { callback: v => v.toFixed(1) + '%' } }
-        }
-    }
-});
+// Auto-scaled axis range from data, so new releases never clip against fixed bounds.
+function nice(vals, { pad = 0.12, zero = false, round = 0.5 } = {}) {
+    const nums = vals.filter(v => typeof v === 'number' && isFinite(v));
+    if (!nums.length) return {};
+    let mn = Math.min(...nums), mx = Math.max(...nums);
+    const span = (mx - mn) || Math.abs(mx) || 1;
+    let lo = zero ? 0 : mn - span * pad;
+    let hi = mx + span * pad;
+    if (round) { lo = Math.floor(lo / round) * round; hi = Math.ceil(hi / round) * round; }
+    return { min: lo, max: hi };
+}
 
-// Inflation line chart
-new Chart(document.getElementById('inflation-chart'), {
-    type: 'line',
-    data: {
-        labels: INFLATION_MONTHLY.labels,
-        datasets: [{
-            label: 'Headline inflation y-on-y',
-            data: INFLATION_MONTHLY.yoy,
-            borderColor: COLORS[1],
-            backgroundColor: COLORS[1] + '20',
-            borderWidth: 2, fill: true, tension: 0.3,
-            pointRadius: 4, pointHoverRadius: 6
-        }]
-    },
-    options: {
-        responsive: true, maintainAspectRatio: false,
-        interaction: { mode: 'index', intersect: false },
-        plugins: { legend: { display: false }, tooltip: pctTooltip },
-        scales: {
-            x: { grid: { display: false } },
-            y: { beginAtZero: true, max: 5.5, ticks: { callback: v => v.toFixed(1) + '%' } }
-        }
-    }
-});
+function renderMeta(meta) {
+    document.getElementById('meta-compiled').textContent = meta.compiled || '—';
+    document.getElementById('meta-latest').textContent = meta.latest_note || '—';
+}
 
-// Trade mixed chart (bars + balance line)
-new Chart(document.getElementById('trade-chart'), {
-    data: {
-        labels: TRADE_MONTHLY.labels,
-        datasets: [
-            {
-                type: 'bar', label: 'Exports', data: TRADE_MONTHLY.exports,
-                backgroundColor: COLORS[2] + 'CC', borderColor: COLORS[2], borderWidth: 1, borderRadius: 3
-            },
-            {
-                type: 'bar', label: 'Imports', data: TRADE_MONTHLY.imports,
-                backgroundColor: COLORS[3] + 'CC', borderColor: COLORS[3], borderWidth: 1, borderRadius: 3
-            },
-            {
-                type: 'line', label: 'Balance', data: TRADE_MONTHLY.balance,
-                borderColor: COLORS[0], backgroundColor: COLORS[0],
-                borderWidth: 2, tension: 0.3, pointRadius: 4, yAxisID: 'y1'
+function renderKPIs(kpis) {
+    document.getElementById('kpi-row').innerHTML = kpis.map(k => `
+        <div class="kpi-card">
+            <div class="kpi-label">${k.label}</div>
+            <div class="kpi-value">${k.value}</div>
+            <div class="kpi-period">${k.period}</div>
+            <div class="kpi-change ${k.dir}">${k.change}</div>
+            <a class="src" href="${k.src_url}" target="_blank" rel="noopener">${k.src_label}</a>
+        </div>`).join('');
+}
+
+let CHART_INSTANCES = [];
+function buildCharts(c) {
+    CHART_INSTANCES.forEach(ch => ch.destroy());
+    CHART_INSTANCES = [];
+    const push = (el, cfg) => CHART_INSTANCES.push(new Chart(document.getElementById(el), cfg));
+
+    // GDP bar chart — last bar highlighted as the newest quarter
+    const gdp = c.gdp_quarterly;
+    push('gdp-chart', {
+        type: 'bar',
+        data: {
+            labels: gdp.labels,
+            datasets: [{
+                label: 'GDP growth y-on-y',
+                data: gdp.growth,
+                backgroundColor: gdp.labels.map((l, i, a) => i === a.length - 1 ? '#DD8452CC' : '#4C72B0CC'),
+                borderColor: gdp.labels.map((l, i, a) => i === a.length - 1 ? '#DD8452' : '#4C72B0'),
+                borderWidth: 1,
+                borderRadius: 4
+            }]
+        },
+        options: {
+            responsive: true, maintainAspectRatio: false,
+            plugins: { legend: { display: false }, tooltip: pctTooltip },
+            scales: {
+                x: { grid: { display: false } },
+                y: { ...nice(gdp.growth, { round: 0.2 }), ticks: { callback: v => v.toFixed(1) + '%' } }
             }
-        ]
-    },
-    options: {
-        responsive: true, maintainAspectRatio: false,
-        interaction: { mode: 'index', intersect: false },
-        plugins: {
-            legend: { position: 'top', labels: { usePointStyle: true, padding: 16 } },
-            tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: $${ctx.parsed.y.toFixed(2)}B` } }
-        },
-        scales: {
-            x: { grid: { display: false } },
-            y: { beginAtZero: true, title: { display: true, text: 'US$ billion' }, ticks: { callback: v => '$' + v + 'B' } },
-            y1: { position: 'right', beginAtZero: true, max: 4, grid: { drawOnChartArea: false }, title: { display: true, text: 'Balance (US$B)' }, ticks: { callback: v => '$' + v + 'B' } }
         }
-    }
-});
+    });
 
-// Poverty line chart
-new Chart(document.getElementById('poverty-chart'), {
-    type: 'line',
-    data: {
-        labels: POVERTY.labels,
-        datasets: [{
-            label: 'Poverty rate',
-            data: POVERTY.rate,
-            borderColor: COLORS[4],
-            backgroundColor: COLORS[4] + '20',
-            borderWidth: 2, fill: true, tension: 0.3,
-            pointRadius: 5, pointHoverRadius: 7
-        }]
-    },
-    options: {
-        responsive: true, maintainAspectRatio: false,
-        plugins: { legend: { display: false }, tooltip: pctTooltip },
-        scales: {
-            x: { grid: { display: false } },
-            y: { min: 7.5, max: 9.8, ticks: { callback: v => v.toFixed(1) + '%' } }
-        }
-    }
-});
-
-// Rupiah / US$ line chart (Bank Indonesia)
-new Chart(document.getElementById('fx-chart'), {
-    type: 'line',
-    data: {
-        labels: FX.labels,
-        datasets: [{
-            label: 'Rupiah per US$',
-            data: FX.rate,
-            borderColor: COLORS[3],
-            backgroundColor: COLORS[3] + '20',
-            borderWidth: 2, fill: true, tension: 0.3,
-            pointRadius: 4, pointHoverRadius: 6
-        }]
-    },
-    options: {
-        responsive: true, maintainAspectRatio: false,
-        interaction: { mode: 'index', intersect: false },
-        plugins: {
-            legend: { display: false },
-            tooltip: { callbacks: { label: ctx => 'Rp' + ctx.parsed.y.toLocaleString() + ' / US$' } }
+    // Inflation line chart
+    const inf = c.inflation_monthly;
+    push('inflation-chart', {
+        type: 'line',
+        data: {
+            labels: inf.labels,
+            datasets: [{
+                label: 'Headline inflation y-on-y',
+                data: inf.yoy,
+                borderColor: COLORS[1],
+                backgroundColor: COLORS[1] + '20',
+                borderWidth: 2, fill: true, tension: 0.3,
+                pointRadius: 4, pointHoverRadius: 6
+            }]
         },
-        scales: {
-            x: { grid: { display: false } },
-            y: { min: 16500, max: 18300, ticks: { callback: v => 'Rp' + (v/1000).toFixed(1) + 'k' } }
+        options: {
+            responsive: true, maintainAspectRatio: false,
+            interaction: { mode: 'index', intersect: false },
+            plugins: { legend: { display: false }, tooltip: pctTooltip },
+            scales: {
+                x: { grid: { display: false } },
+                y: { ...nice(inf.yoy, { zero: true }), ticks: { callback: v => v.toFixed(1) + '%' } }
+            }
         }
-    }
-});
+    });
 
-// BI-Rate bar chart (Bank Indonesia)
-new Chart(document.getElementById('birate-chart'), {
-    type: 'bar',
-    data: {
-        labels: BIRATE.labels,
-        datasets: [{
-            label: 'BI-Rate',
-            data: BIRATE.rate,
-            backgroundColor: BIRATE.labels.map((l,i) => i === BIRATE.rate.length-1 ? '#DD8452CC' : '#118ab2CC'),
-            borderColor: BIRATE.labels.map((l,i) => i === BIRATE.rate.length-1 ? '#DD8452' : '#118ab2'),
-            borderWidth: 1, borderRadius: 4
-        }]
-    },
-    options: {
-        responsive: true, maintainAspectRatio: false,
-        plugins: {
-            legend: { display: false },
-            tooltip: { callbacks: { label: ctx => ctx.parsed.y.toFixed(2) + '%' } }
+    // Trade mixed chart (bars + balance line)
+    const tr = c.trade_monthly;
+    push('trade-chart', {
+        data: {
+            labels: tr.labels,
+            datasets: [
+                {
+                    type: 'bar', label: 'Exports', data: tr.exports,
+                    backgroundColor: COLORS[2] + 'CC', borderColor: COLORS[2], borderWidth: 1, borderRadius: 3
+                },
+                {
+                    type: 'bar', label: 'Imports', data: tr.imports,
+                    backgroundColor: COLORS[3] + 'CC', borderColor: COLORS[3], borderWidth: 1, borderRadius: 3
+                },
+                {
+                    type: 'line', label: 'Balance', data: tr.balance,
+                    borderColor: COLORS[0], backgroundColor: COLORS[0],
+                    borderWidth: 2, tension: 0.3, pointRadius: 4, yAxisID: 'y1'
+                }
+            ]
         },
-        scales: {
-            x: { grid: { display: false } },
-            y: { min: 5.0, max: 6.0, ticks: { callback: v => v.toFixed(1) + '%' } }
+        options: {
+            responsive: true, maintainAspectRatio: false,
+            interaction: { mode: 'index', intersect: false },
+            plugins: {
+                legend: { position: 'top', labels: { usePointStyle: true, padding: 16 } },
+                tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: $${ctx.parsed.y.toFixed(2)}B` } }
+            },
+            scales: {
+                x: { grid: { display: false } },
+                y: { ...nice([0, ...tr.exports, ...tr.imports], { zero: true, round: 5 }), title: { display: true, text: 'US$ billion' }, ticks: { callback: v => '$' + v + 'B' } },
+                y1: { position: 'right', ...nice([0, ...tr.balance], { round: 1 }), grid: { drawOnChartArea: false }, title: { display: true, text: 'Balance (US$B)' }, ticks: { callback: v => '$' + v + 'B' } }
+            }
         }
-    }
-});
+    });
+
+    // Poverty line chart
+    const pov = c.poverty;
+    push('poverty-chart', {
+        type: 'line',
+        data: {
+            labels: pov.labels,
+            datasets: [{
+                label: 'Poverty rate',
+                data: pov.rate,
+                borderColor: COLORS[4],
+                backgroundColor: COLORS[4] + '20',
+                borderWidth: 2, fill: true, tension: 0.3,
+                pointRadius: 5, pointHoverRadius: 7
+            }]
+        },
+        options: {
+            responsive: true, maintainAspectRatio: false,
+            plugins: { legend: { display: false }, tooltip: pctTooltip },
+            scales: {
+                x: { grid: { display: false } },
+                y: { ...nice(pov.rate, { round: 0.5 }), ticks: { callback: v => v.toFixed(1) + '%' } }
+            }
+        }
+    });
+
+    // Rupiah / US$ line chart (Bank Indonesia)
+    const fx = c.fx;
+    push('fx-chart', {
+        type: 'line',
+        data: {
+            labels: fx.labels,
+            datasets: [{
+                label: 'Rupiah per US$',
+                data: fx.rate,
+                borderColor: COLORS[3],
+                backgroundColor: COLORS[3] + '20',
+                borderWidth: 2, fill: true, tension: 0.3,
+                pointRadius: 4, pointHoverRadius: 6
+            }]
+        },
+        options: {
+            responsive: true, maintainAspectRatio: false,
+            interaction: { mode: 'index', intersect: false },
+            plugins: {
+                legend: { display: false },
+                tooltip: { callbacks: { label: ctx => 'Rp' + ctx.parsed.y.toLocaleString() + ' / US$' } }
+            },
+            scales: {
+                x: { grid: { display: false } },
+                y: { ...nice(fx.rate, { round: 100 }), ticks: { callback: v => 'Rp' + (v / 1000).toFixed(1) + 'k' } }
+            }
+        }
+    });
+
+    // BI-Rate bar chart (Bank Indonesia)
+    const br = c.birate;
+    push('birate-chart', {
+        type: 'bar',
+        data: {
+            labels: br.labels,
+            datasets: [{
+                label: 'BI-Rate',
+                data: br.rate,
+                backgroundColor: br.labels.map((l, i) => i === br.rate.length - 1 ? '#DD8452CC' : '#118ab2CC'),
+                borderColor: br.labels.map((l, i) => i === br.rate.length - 1 ? '#DD8452' : '#118ab2'),
+                borderWidth: 1, borderRadius: 4
+            }]
+        },
+        options: {
+            responsive: true, maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false },
+                tooltip: { callbacks: { label: ctx => ctx.parsed.y.toFixed(2) + '%' } }
+            },
+            scales: {
+                x: { grid: { display: false } },
+                y: { ...nice(br.rate, { round: 0.25 }), ticks: { callback: v => v.toFixed(1) + '%' } }
+            }
+        }
+    });
+}
+
+// ---- Load data and render ----
+fetch('data.json', { cache: 'no-store' })
+    .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+    .then(d => {
+        renderMeta(d.meta || {});
+        renderKPIs(d.kpis || []);
+        buildCharts(d.charts || {});
+    })
+    .catch(err => {
+        console.error('Failed to load data.json:', err);
+        document.getElementById('kpi-row').innerHTML =
+            '<div class="kpi-card" style="border-top-color:var(--negative)">'
+            + '<div class="kpi-label">Data load error</div>'
+            + '<div class="kpi-value" style="font-size:16px">data.json</div>'
+            + '<div class="kpi-period">' + err.message + '</div>'
+            + '<div class="kpi-change negative">Serve over HTTP, e.g. <code>python -m http.server 8755</code></div></div>';
+    });
 </script>
 </body>
 </html>
