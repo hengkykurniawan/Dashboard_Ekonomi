@@ -176,8 +176,7 @@ body {
             <div class="subtitle">Source: <a href="https://www.bps.go.id" target="_blank" rel="noopener">Badan Pusat Statistik (BPS) — bps.go.id</a> official statistical releases</div>
         </div>
         <div class="header-right">
-            Last updated: <span id="meta-compiled">—</span><br>
-            Latest: <span id="meta-latest">—</span>
+            Last updated: <span id="meta-compiled">—</span>
         </div>
     </header>
 
@@ -331,7 +330,6 @@ function fmtDate(iso) {
 function renderMeta(meta) {
     // Prefer the auto-stamped generated_at (refreshed daily) over the static compiled date.
     document.getElementById('meta-compiled').textContent = fmtDate(meta.generated_at) || meta.compiled || '—';
-    document.getElementById('meta-latest').textContent = meta.latest_note || '—';
 }
 
 function renderInflationComponents(series) {
