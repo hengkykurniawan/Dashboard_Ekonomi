@@ -176,7 +176,7 @@ body {
             <div class="subtitle">Source: <a href="https://www.bps.go.id" target="_blank" rel="noopener">Badan Pusat Statistik (BPS) — bps.go.id</a> official statistical releases</div>
         </div>
         <div class="header-right">
-            Data compiled: <span id="meta-compiled">—</span><br>
+            Last updated: <span id="meta-compiled">—</span><br>
             Latest: <span id="meta-latest">—</span>
         </div>
     </header>
@@ -322,8 +322,15 @@ function nice(vals, { pad = 0.12, zero = false, round = 0.5 } = {}) {
     return { min: lo, max: hi };
 }
 
+function fmtDate(iso) {
+    if (!iso) return '';
+    const d = new Date(iso + 'T00:00:00');
+    return isNaN(d) ? iso : d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+}
+
 function renderMeta(meta) {
-    document.getElementById('meta-compiled').textContent = meta.compiled || '—';
+    // Prefer the auto-stamped generated_at (refreshed daily) over the static compiled date.
+    document.getElementById('meta-compiled').textContent = fmtDate(meta.generated_at) || meta.compiled || '—';
     document.getElementById('meta-latest').textContent = meta.latest_note || '—';
 }
 
