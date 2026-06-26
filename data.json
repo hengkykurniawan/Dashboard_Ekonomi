@@ -2,7 +2,7 @@
   "meta": {
     "compiled": "19 June 2026",
     "latest_note": "BI-Rate hike 18 Jun · inflation & trade 2 Jun",
-    "generated_at": "2026-06-25",
+    "generated_at": "2026-06-26",
     "generator": "update_dashboard.py",
     "fx_baseline": {
       "rate": 16720,
@@ -123,8 +123,8 @@
     {
       "key": "fx",
       "label": "USD/IDR (reference rate)",
-      "value": "Rp17,977",
-      "period": "24 Jun 2026",
+      "value": "Rp17,982",
+      "period": "25 Jun 2026",
       "change": "▲ +7.5% YTD vs Rp16,720",
       "dir": "negative",
       "src_label": "Frankfurter (ECB) →",
@@ -165,7 +165,7 @@
       "label": "Manufacturing Output (q-o-q)",
       "value": "−3.82%",
       "period": "Q1 2026",
-      "change": "▼ −6.45 pp vs Q4 2025 (2.63%)",
+      "change": "▼ −6.23 pp vs Q4 2025 (2.41%)",
       "dir": "negative",
       "src_label": "BPS release →",
       "src_url": "https://www.bps.go.id/en/statistics-table?subject=9"
@@ -278,7 +278,8 @@
         "19 Jun",
         "22 Jun",
         "23 Jun",
-        "24 Jun"
+        "24 Jun",
+        "25 Jun"
       ],
       "rate": [
         16720,
@@ -291,7 +292,8 @@
         17808,
         17838,
         17921,
-        17977
+        17977,
+        17982
       ]
     },
     "birate": {
