@@ -2,7 +2,7 @@
   "meta": {
     "compiled": "19 June 2026",
     "latest_note": "BI-Rate hike 18 Jun · inflation & trade 2 Jun",
-    "generated_at": "2026-06-28",
+    "generated_at": "2026-06-29",
     "generator": "update_dashboard.py",
     "fx_baseline": {
       "rate": 16720,
