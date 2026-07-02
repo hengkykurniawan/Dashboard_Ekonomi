@@ -2,7 +2,7 @@
   "meta": {
     "compiled": "19 June 2026",
     "latest_note": "BI-Rate hike 18 Jun · inflation & trade 2 Jun",
-    "generated_at": "2026-07-01",
+    "generated_at": "2026-07-02",
     "generator": "update_dashboard.py",
     "fx_baseline": {
       "rate": 16720,
@@ -43,9 +43,9 @@
     {
       "key": "inflation",
       "label": "Inflation (y-on-y)",
-      "value": "3.08%",
-      "period": "May 2026",
-      "change": "▲ +0.66 pp vs Apr 2026 (2.42%)",
+      "value": "3.34%",
+      "period": "Jun 2026",
+      "change": "▲ +0.26 pp vs May 2026 (3.08%)",
       "dir": "negative",
       "src_label": "BPS release →",
       "src_url": "https://www.bps.go.id/id/pressrelease/2026/06/02/2579/inflasi-year-on-year--y-on-y--pada-mei-2026-sebesar-3-08-persen-.html"
@@ -73,9 +73,9 @@
     {
       "key": "ihpb",
       "label": "Wholesale Price Index (IHPB)",
-      "value": "110.63",
-      "period": "May 2026",
-      "change": "▲ +1.56 pts vs Apr 2026",
+      "value": "111.55",
+      "period": "Jun 2026",
+      "change": "▲ +0.92 pts vs May 2026",
       "dir": "negative",
       "src_label": "BPS release →",
       "src_url": "https://www.bps.go.id/en/statistics-table?subject=20"
@@ -103,9 +103,9 @@
     {
       "key": "trade",
       "label": "Trade Balance",
-      "value": "+$0.09B",
-      "period": "Apr 2026",
-      "change": "▼ from +$3.32B in Mar 2026",
+      "value": "−$1.61B",
+      "period": "May 2026",
+      "change": "▼ from +$0.09B in Apr 2026",
       "dir": "negative",
       "src_label": "BPS release →",
       "src_url": "https://www.bps.go.id/id/pressrelease/2026/06/02/2583/ekspor-dan-impor-indonesia-april-2026-masing-masing-tercatat-usd-25-30-miliar-dan-usd-25-21-miliar.html"
@@ -123,9 +123,9 @@
     {
       "key": "fx",
       "label": "USD/IDR (reference rate)",
-      "value": "Rp17,903",
-      "period": "30 Jun 2026",
-      "change": "▲ +7.1% YTD vs Rp16,720",
+      "value": "Rp17,961",
+      "period": "1 Jul 2026",
+      "change": "▲ +7.4% YTD vs Rp16,720",
       "dir": "negative",
       "src_label": "Frankfurter (ECB) →",
       "src_url": "https://www.frankfurter.dev/"
@@ -153,10 +153,10 @@
     {
       "key": "ntp",
       "label": "Farmer's Terms of Trade (NTP)",
-      "value": "127.73",
-      "period": "May 2026",
-      "change": "▲ +2.49 pts vs Apr 2026",
-      "dir": "positive",
+      "value": "127.65",
+      "period": "Jun 2026",
+      "change": "▼ −0.08 pts vs May 2026",
+      "dir": "negative",
       "src_label": "BPS release →",
       "src_url": "https://www.bps.go.id/en/statistics-table?subject=22"
     },
@@ -198,7 +198,6 @@
     },
     "inflation_monthly": {
       "labels": [
-        "Sep-25",
         "Oct-25",
         "Nov-25",
         "Dec-25",
@@ -206,10 +205,10 @@
         "Feb-26",
         "Mar-26",
         "Apr-26",
-        "May-26"
+        "May-26",
+        "Jun-26"
       ],
       "yoy": [
-        2.65,
         2.86,
         2.72,
         2.92,
@@ -217,37 +216,38 @@
         4.76,
         3.48,
         2.42,
-        3.08
+        3.08,
+        3.34
       ]
     },
     "trade_monthly": {
       "labels": [
-        "Dec-25",
         "Jan-26",
         "Feb-26",
         "Mar-26",
-        "Apr-26"
+        "Apr-26",
+        "May-26"
       ],
       "exports": [
-        26.35,
         22.16,
         22.17,
         22.53,
-        25.3
+        25.3,
+        23.2
       ],
       "imports": [
-        23.83,
         21.2,
         20.89,
         19.21,
-        25.21
+        25.21,
+        24.81
       ],
       "balance": [
-        2.51,
         0.95,
         1.27,
         3.32,
-        0.09
+        0.09,
+        -1.61
       ]
     },
     "poverty": {
@@ -268,7 +268,6 @@
     },
     "fx": {
       "labels": [
-        "27 Apr",
         "2 Jun",
         "8 Jun",
         "18 Jun",
@@ -279,10 +278,10 @@
         "25 Jun",
         "26 Jun",
         "29 Jun",
-        "30 Jun"
+        "30 Jun",
+        "1 Jul"
       ],
       "rate": [
-        17206,
         17863,
         18095,
         17826,
@@ -293,7 +292,8 @@
         17982,
         17859,
         17853,
-        17903
+        17903,
+        17961
       ]
     },
     "birate": {
@@ -315,32 +315,32 @@
       ]
     },
     "inflation_by_group": {
-      "month": "May 2026",
+      "month": "Jun 2026",
       "labels": [
         "Personal care",
         "Food & tobacco",
         "Transport",
         "Restaurants",
         "Health",
+        "Household equip.",
         "Recreation",
         "Education",
-        "Housing & utilities",
-        "Household equip.",
         "Info & comm.",
+        "Housing & utilities",
         "Clothing"
       ],
       "yoy": [
-        10.35,
-        4.94,
-        2.3,
-        2.24,
-        1.7,
-        1.3,
-        1.15,
-        1.0,
-        0.98,
-        0.97,
-        0.84
+        10.1,
+        4.67,
+        4.57,
+        2.36,
+        1.84,
+        1.44,
+        1.4,
+        1.27,
+        1.26,
+        1.04,
+        1.0
       ]
     }
   },
