@@ -2,7 +2,7 @@
   "meta": {
     "compiled": "19 June 2026",
     "latest_note": "BI-Rate hike 18 Jun · inflation & trade 2 Jun",
-    "generated_at": "2026-07-02",
+    "generated_at": "2026-07-03",
     "generator": "update_dashboard.py",
     "fx_baseline": {
       "rate": 16720,
@@ -123,9 +123,9 @@
     {
       "key": "fx",
       "label": "USD/IDR (reference rate)",
-      "value": "Rp17,961",
-      "period": "1 Jul 2026",
-      "change": "▲ +7.4% YTD vs Rp16,720",
+      "value": "Rp18,021",
+      "period": "2 Jul 2026",
+      "change": "▲ +7.8% YTD vs Rp16,720",
       "dir": "negative",
       "src_label": "Frankfurter (ECB) →",
       "src_url": "https://www.frankfurter.dev/"
@@ -143,9 +143,9 @@
     {
       "key": "tourism",
       "label": "Foreign Tourist Arrivals",
-      "value": "1.25M",
-      "period": "Apr 2026",
-      "change": "▲ +7.2% vs Apr 2025",
+      "value": "1.38M",
+      "period": "May 2026",
+      "change": "▲ +5.8% vs May 2025",
       "dir": "positive",
       "src_label": "BPS release →",
       "src_url": "https://www.bps.go.id/en/statistics-table?subject=16"
@@ -268,7 +268,6 @@
     },
     "fx": {
       "labels": [
-        "2 Jun",
         "8 Jun",
         "18 Jun",
         "19 Jun",
@@ -279,10 +278,10 @@
         "26 Jun",
         "29 Jun",
         "30 Jun",
-        "1 Jul"
+        "1 Jul",
+        "2 Jul"
       ],
       "rate": [
-        17863,
         18095,
         17826,
         17808,
@@ -293,7 +292,8 @@
         17859,
         17853,
         17903,
-        17961
+        17961,
+        18021
       ]
     },
     "birate": {
