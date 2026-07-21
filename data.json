@@ -2,7 +2,7 @@
   "meta": {
     "compiled": "19 June 2026",
     "latest_note": "BI-Rate hike 18 Jun · inflation & trade 2 Jun",
-    "generated_at": "2026-07-20",
+    "generated_at": "2026-07-21",
     "generator": "update_dashboard.py",
     "fx_baseline": {
       "rate": 16720,
@@ -123,9 +123,9 @@
     {
       "key": "fx",
       "label": "USD/IDR (reference rate)",
-      "value": "Rp17,945",
-      "period": "17 Jul 2026",
-      "change": "▲ +7.3% YTD vs Rp16,720",
+      "value": "Rp17,950",
+      "period": "20 Jul 2026",
+      "change": "▲ +7.4% YTD vs Rp16,720",
       "dir": "negative",
       "src_label": "Frankfurter (ECB) →",
       "src_url": "https://www.frankfurter.dev/"
@@ -268,7 +268,6 @@
     },
     "fx": {
       "labels": [
-        "2 Jul",
         "3 Jul",
         "6 Jul",
         "7 Jul",
@@ -279,10 +278,10 @@
         "14 Jul",
         "15 Jul",
         "16 Jul",
-        "17 Jul"
+        "17 Jul",
+        "20 Jul"
       ],
       "rate": [
-        18021,
         17964,
         18016,
         17891,
@@ -293,7 +292,8 @@
         18060,
         18071,
         17986,
-        17945
+        17945,
+        17950
       ]
     },
     "birate": {
