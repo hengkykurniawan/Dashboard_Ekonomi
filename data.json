@@ -2,7 +2,7 @@
   "meta": {
     "compiled": "19 June 2026",
     "latest_note": "BI-Rate hike 18 Jun · inflation & trade 2 Jun",
-    "generated_at": "2026-08-02",
+    "generated_at": "2026-08-03",
     "generator": "update_dashboard.py",
     "fx_baseline": {
       "rate": 16720,
@@ -43,10 +43,10 @@
     {
       "key": "inflation",
       "label": "Inflation (y-on-y)",
-      "value": "3.34%",
-      "period": "Jun 2026",
-      "change": "▲ +0.26 pp vs May 2026 (3.08%)",
-      "dir": "negative",
+      "value": "2.88%",
+      "period": "Jul 2026",
+      "change": "▼ −0.46 pp vs Jun 2026 (3.34%)",
+      "dir": "positive",
       "src_label": "BPS release →",
       "src_url": "https://www.bps.go.id/id/pressrelease/2026/06/02/2579/inflasi-year-on-year--y-on-y--pada-mei-2026-sebesar-3-08-persen-.html"
     },
@@ -198,7 +198,6 @@
     },
     "inflation_monthly": {
       "labels": [
-        "Oct-25",
         "Nov-25",
         "Dec-25",
         "Jan-26",
@@ -206,10 +205,10 @@
         "Mar-26",
         "Apr-26",
         "May-26",
-        "Jun-26"
+        "Jun-26",
+        "Jul-26"
       ],
       "yoy": [
-        2.86,
         2.72,
         2.92,
         3.55,
@@ -217,7 +216,8 @@
         3.48,
         2.42,
         3.08,
-        3.34
+        3.34,
+        2.88
       ]
     },
     "trade_monthly": {
