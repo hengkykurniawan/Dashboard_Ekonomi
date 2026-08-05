@@ -50,3 +50,23 @@ jobs:
           else
             echo "No data changes today."
           fi
+
+      # Fails the job (→ GitHub emails the repo owner) only when the data has
+      # been stale for several days — i.e. a sustained BPS outage or a broken
+      # fetch, not a single transient hiccup. This is the early-warning system.
+      - name: Alert if data is stale
+        run: |
+          python - <<'PY'
+          import json, datetime as dt, sys
+          meta = json.load(open("data.json")).get("meta", {})
+          gen = meta.get("generated_at", "")
+          try:
+              age = (dt.date.today() - dt.date.fromisoformat(gen)).days
+          except Exception:
+              age = 999
+          print(f"Data age: {age} day(s) (generated_at={gen})")
+          if age > 3:
+              print(f"::error::Dashboard data is stale ({age} days). "
+                    f"BPS fetch is likely failing — check the workflow logs.")
+              sys.exit(1)
+          PY

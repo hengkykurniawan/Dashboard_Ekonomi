@@ -329,7 +329,18 @@ function fmtDate(iso) {
 
 function renderMeta(meta) {
     // Prefer the auto-stamped generated_at (refreshed daily) over the static compiled date.
-    document.getElementById('meta-compiled').textContent = fmtDate(meta.generated_at) || meta.compiled || '—';
+    const el = document.getElementById('meta-compiled');
+    el.textContent = fmtDate(meta.generated_at) || meta.compiled || '—';
+    // Visible staleness warning if the auto-update hasn't run in a few days.
+    const gen = meta.generated_at ? new Date(meta.generated_at + 'T00:00:00') : null;
+    if (gen && !isNaN(gen)) {
+        const days = Math.floor((Date.now() - gen.getTime()) / 86400000);
+        if (days > 2) {
+            el.textContent += ' ⚠';
+            el.style.color = '#ffcc66';
+            el.title = `Data ${days} days old — the daily auto-update may be failing.`;
+        }
+    }
 }
 
 function renderInflationComponents(series) {
