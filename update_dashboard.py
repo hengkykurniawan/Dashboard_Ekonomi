@@ -171,8 +171,11 @@ def collect_points(client: BPSClient, var, turvar, vervar, ptype):
     return out
 
 
-def update_bps(data: dict, verbose: bool) -> list[str]:
+def update_bps(data: dict, verbose: bool):
+    """Overlay BPS indicators. Returns (warnings, n_ok) where n_ok counts
+    successful fetches — used to decide whether the data was actually refreshed."""
     warnings: list[str] = []
+    n_ok = 0
     client = BPSClient()
     kpis = kpi_index(data)
 
@@ -196,6 +199,7 @@ def update_bps(data: dict, verbose: bool) -> list[str]:
                 ch[cfg["field"]] = [round(p[2], 2) for p in tail]
             if verbose:
                 log(f"BPS:{key}: {kpis[key]['value']} @ {period}  ({len(pts)} periods)")
+            n_ok += 1
         except Exception as e:
             warnings.append(f"BPS:{key}: {e} — preserved.")
 
@@ -222,6 +226,7 @@ def update_bps(data: dict, verbose: bool) -> list[str]:
                 kpis["trade"]["dir"] = direction(delta, "up")
             if verbose:
                 log(f"BPS:trade: {kpis['trade']['value']} @ {period}  (exp {ch['exports'][-1]}B / imp {ch['imports'][-1]}B)")
+            n_ok += 1
         else:
             warnings.append("BPS:trade: incomplete export/import/balance series — preserved.")
     except Exception as e:
@@ -250,12 +255,13 @@ def update_bps(data: dict, verbose: bool) -> list[str]:
             }
             if verbose:
                 log(f"BPS:inflation_by_group: {len(rows)} categories @ {month} (top {rows[0][0]} {rows[0][1]}%)")
+            n_ok += 1
         else:
             warnings.append(f"BPS:inflation_by_group: only {len(rows)}/{len(INFLATION_GROUPS)} groups — preserved.")
     except Exception as e:
         warnings.append(f"BPS:inflation_by_group: {e} — preserved.")
 
-    return warnings
+    return warnings, n_ok
 
 
 FX_API = "https://api.frankfurter.dev/v1/latest?base=USD&symbols=IDR"
@@ -319,18 +325,26 @@ def main() -> int:
     args = ap.parse_args()
 
     data = load_base()
-    warnings = update_bps(data, args.verbose) + update_monetary(data, args.verbose)
+    bps_warnings, bps_ok = update_bps(data, args.verbose)
+    warnings = bps_warnings + update_monetary(data, args.verbose)
 
     today = dt.date.today().isoformat()
     data.setdefault("meta", {})
-    data["meta"]["generated_at"] = today
     data["meta"]["generator"] = "update_dashboard.py"
+    # Only advance the "Last updated" date when BPS actually responded, so the
+    # header never claims a refresh that didn't happen (transient API outage).
+    if bps_ok > 0:
+        data["meta"]["generated_at"] = today
+    else:
+        log("  ! All BPS fetches failed — 'Last updated' left unchanged "
+            f"(still {data.get('meta', {}).get('generated_at', '?')}).")
 
     for w in warnings:
         log(f"  ! {w}")
+    log(f"\nBPS indicators refreshed: {bps_ok}")
 
     if args.dry_run:
-        log("\n--dry-run: data.json NOT written.")
+        log("--dry-run: data.json NOT written.")
         return 0
 
     DATA_FILE.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import os
 import sys
+import time
 from pathlib import Path
 
 import requests
@@ -45,18 +46,42 @@ class BPSClient:
         self.domain = domain
         self.session = requests.Session()
         self.session.headers.update({"User-Agent": "Dashboard_Ekonomi/1.0 (+github actions)"})
+        self._down = False          # circuit breaker: trips on a full outage
+        self._consecutive_fail = 0
+
+    # The BPS WebAPI intermittently drops connections from cloud runners
+    # (RemoteDisconnected). Retry transient single failures with backoff — but
+    # once several calls fail in a row (a full outage), the circuit breaker
+    # trips and the rest fail fast so the run doesn't crawl. A later cron run
+    # then picks up the data when the API recovers.
+    RETRIES = 3
+    BACKOFF = 2       # seconds, multiplied by the attempt number
+    TRIP_AFTER = 3    # consecutive full failures before failing fast
 
     def _get(self, path: str) -> dict:
         url = f"{BASE}/{path}/key/{self.key}/"
-        try:
-            r = self.session.get(url, timeout=30)
-            r.raise_for_status()
-        except requests.RequestException as e:
-            raise RuntimeError(f"BPS request failed for {_redact(url, self.key)}: {e}") from e
-        data = r.json()
-        if isinstance(data, dict) and str(data.get("status", "OK")).upper() == "ERROR":
-            raise RuntimeError(f"BPS API error: {data.get('message')} ({_redact(url, self.key)})")
-        return data
+        tries = 1 if self._down else self.RETRIES
+        last_err = None
+        for attempt in range(1, tries + 1):
+            try:
+                r = self.session.get(url, timeout=30)
+                r.raise_for_status()
+                data = r.json()
+                if isinstance(data, dict) and str(data.get("status", "OK")).upper() == "ERROR":
+                    raise RuntimeError(f"BPS API error: {data.get('message')}")
+                self._consecutive_fail = 0
+                self._down = False
+                return data
+            except (requests.RequestException, ValueError) as e:
+                last_err = e
+                if attempt < tries:
+                    time.sleep(self.BACKOFF * attempt)
+        self._consecutive_fail += 1
+        if self._consecutive_fail >= self.TRIP_AFTER:
+            self._down = True     # stop retrying for the rest of this run
+        raise RuntimeError(
+            f"BPS request failed for {_redact(url, self.key)} after {tries} tries: {last_err}"
+        )
 
     # ---- catalogue endpoints (used by discover_bps.py) ----
     def list_subjects(self, page: int = 1) -> dict:
