@@ -2,7 +2,7 @@
   "meta": {
     "compiled": "19 June 2026",
     "latest_note": "BI-Rate hike 18 Jun · inflation & trade 2 Jun",
-    "generated_at": "2026-08-31",
+    "generated_at": "2026-09-01",
     "generator": "update_dashboard.py",
     "fx_baseline": {
       "rate": 16720,
@@ -43,10 +43,10 @@
     {
       "key": "inflation",
       "label": "Inflation (y-on-y)",
-      "value": "2.88%",
-      "period": "Jul 2026",
-      "change": "▼ −0.46 pp vs Jun 2026 (3.34%)",
-      "dir": "positive",
+      "value": "3.19%",
+      "period": "Aug 2026",
+      "change": "▲ +0.31 pp vs Jul 2026 (2.88%)",
+      "dir": "negative",
       "src_label": "BPS release →",
       "src_url": "https://www.bps.go.id/id/pressrelease/2026/06/02/2579/inflasi-year-on-year--y-on-y--pada-mei-2026-sebesar-3-08-persen-.html"
     },
@@ -163,9 +163,9 @@
     {
       "key": "mfg",
       "label": "Manufacturing Output (q-o-q)",
-      "value": "1.73%",
+      "value": "3.69%",
       "period": "Q2 2026",
-      "change": "▲ +7.35 pp vs Q1 2026 (-5.62%)",
+      "change": "▲ +9.31 pp vs Q1 2026 (-5.62%)",
       "dir": "positive",
       "src_label": "BPS release →",
       "src_url": "https://www.bps.go.id/en/statistics-table?subject=9"
@@ -198,7 +198,6 @@
     },
     "inflation_monthly": {
       "labels": [
-        "Nov-25",
         "Dec-25",
         "Jan-26",
         "Feb-26",
@@ -206,10 +205,10 @@
         "Apr-26",
         "May-26",
         "Jun-26",
-        "Jul-26"
+        "Jul-26",
+        "Aug-26"
       ],
       "yoy": [
-        2.72,
         2.92,
         3.55,
         4.76,
@@ -217,7 +216,8 @@
         2.42,
         3.08,
         3.34,
-        2.88
+        2.88,
+        3.19
       ]
     },
     "trade_monthly": {
