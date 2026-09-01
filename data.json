@@ -73,10 +73,10 @@
     {
       "key": "ihpb",
       "label": "Wholesale Price Index (IHPB)",
-      "value": "111.14",
-      "period": "Jul 2026",
-      "change": "▼ −0.41 pts vs Jun 2026",
-      "dir": "positive",
+      "value": "111.70",
+      "period": "Aug 2026",
+      "change": "▲ +0.56 pts vs Jul 2026",
+      "dir": "negative",
       "src_label": "BPS release →",
       "src_url": "https://www.bps.go.id/en/statistics-table?subject=20"
     },
@@ -103,9 +103,9 @@
     {
       "key": "trade",
       "label": "Trade Balance",
-      "value": "−$0.45B",
-      "period": "Jun 2026",
-      "change": "▲ from −$1.61B in May 2026",
+      "value": "+$0.12B",
+      "period": "Jul 2026",
+      "change": "▲ from −$0.45B in Jun 2026",
       "dir": "positive",
       "src_label": "BPS release →",
       "src_url": "https://www.bps.go.id/id/pressrelease/2026/06/02/2583/ekspor-dan-impor-indonesia-april-2026-masing-masing-tercatat-usd-25-30-miliar-dan-usd-25-21-miliar.html"
@@ -153,9 +153,9 @@
     {
       "key": "ntp",
       "label": "Farmer's Terms of Trade (NTP)",
-      "value": "127.84",
-      "period": "Jul 2026",
-      "change": "▲ +0.19 pts vs Jun 2026",
+      "value": "129.19",
+      "period": "Aug 2026",
+      "change": "▲ +1.35 pts vs Jul 2026",
       "dir": "positive",
       "src_label": "BPS release →",
       "src_url": "https://www.bps.go.id/en/statistics-table?subject=22"
@@ -222,32 +222,32 @@
     },
     "trade_monthly": {
       "labels": [
-        "Feb-26",
         "Mar-26",
         "Apr-26",
         "May-26",
-        "Jun-26"
+        "Jun-26",
+        "Jul-26"
       ],
       "exports": [
-        22.17,
         22.53,
         25.3,
         23.2,
-        25.46
+        25.46,
+        26.22
       ],
       "imports": [
-        20.89,
         19.21,
         25.21,
         24.81,
-        25.91
+        25.91,
+        26.09
       ],
       "balance": [
-        1.27,
         3.32,
         0.09,
         -1.61,
-        -0.45
+        -0.45,
+        0.12
       ]
     },
     "poverty": {
@@ -315,7 +315,7 @@
       ]
     },
     "inflation_by_group": {
-      "month": "Jul 2026",
+      "month": "Aug 2026",
       "labels": [
         "Personal care",
         "Transport",
@@ -330,17 +330,17 @@
         "Housing & utilities"
       ],
       "yoy": [
-        9.04,
-        5.12,
-        2.97,
-        2.55,
-        1.96,
+        9.25,
+        4.79,
+        3.86,
+        2.67,
+        2.12,
+        2.0,
+        1.75,
         1.72,
-        1.58,
-        1.5,
-        1.04,
-        1.0,
-        0.99
+        1.2,
+        1.2,
+        1.01
       ]
     }
   },
