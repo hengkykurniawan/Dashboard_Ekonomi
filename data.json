@@ -123,9 +123,9 @@
     {
       "key": "fx",
       "label": "USD/IDR (reference rate)",
-      "value": "Rp17,710",
-      "period": "31 Aug 2026",
-      "change": "▲ +5.9% YTD vs Rp16,720",
+      "value": "Rp17,745",
+      "period": "1 Sep 2026",
+      "change": "▲ +6.1% YTD vs Rp16,720",
       "dir": "negative",
       "src_label": "Frankfurter (ECB) →",
       "src_url": "https://www.frankfurter.dev/"
@@ -268,7 +268,6 @@
     },
     "fx": {
       "labels": [
-        "14 Aug",
         "17 Aug",
         "18 Aug",
         "19 Aug",
@@ -279,10 +278,10 @@
         "26 Aug",
         "27 Aug",
         "28 Aug",
-        "31 Aug"
+        "31 Aug",
+        "1 Sep"
       ],
       "rate": [
-        17787,
         17816,
         17862,
         17832,
@@ -293,7 +292,8 @@
         17713,
         17737,
         17717,
-        17710
+        17710,
+        17745
       ]
     },
     "birate": {
