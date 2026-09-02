@@ -143,10 +143,10 @@
     {
       "key": "tourism",
       "label": "Foreign Tourist Arrivals",
-      "value": "1.39M",
-      "period": "Jun 2026",
-      "change": "▼ −2.2% vs Jun 2025",
-      "dir": "negative",
+      "value": "1.53M",
+      "period": "Jul 2026",
+      "change": "▲ +2.9% vs Jul 2025",
+      "dir": "positive",
       "src_label": "BPS release →",
       "src_url": "https://www.bps.go.id/en/statistics-table?subject=16"
     },
