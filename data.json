@@ -2,7 +2,7 @@
   "meta": {
     "compiled": "19 June 2026",
     "latest_note": "BI-Rate hike 18 Jun · inflation & trade 2 Jun",
-    "generated_at": "2026-09-30",
+    "generated_at": "2026-10-01",
     "generator": "update_dashboard.py",
     "fx_baseline": {
       "rate": 16720,
@@ -43,9 +43,9 @@
     {
       "key": "inflation",
       "label": "Inflation (y-on-y)",
-      "value": "3.19%",
-      "period": "Aug 2026",
-      "change": "▲ +0.31 pp vs Jul 2026 (2.88%)",
+      "value": "3.28%",
+      "period": "Sep 2026",
+      "change": "▲ +0.09 pp vs Aug 2026 (3.19%)",
       "dir": "negative",
       "src_label": "BPS release →",
       "src_url": "https://www.bps.go.id/id/pressrelease/2026/06/02/2579/inflasi-year-on-year--y-on-y--pada-mei-2026-sebesar-3-08-persen-.html"
@@ -73,9 +73,9 @@
     {
       "key": "ihpb",
       "label": "Wholesale Price Index (IHPB)",
-      "value": "111.70",
-      "period": "Aug 2026",
-      "change": "▲ +0.56 pts vs Jul 2026",
+      "value": "112.39",
+      "period": "Sep 2026",
+      "change": "▲ +0.69 pts vs Aug 2026",
       "dir": "negative",
       "src_label": "BPS release →",
       "src_url": "https://www.bps.go.id/en/statistics-table?subject=20"
@@ -103,9 +103,9 @@
     {
       "key": "trade",
       "label": "Trade Balance",
-      "value": "+$0.12B",
-      "period": "Jul 2026",
-      "change": "▲ from −$0.45B in Jun 2026",
+      "value": "+$3.55B",
+      "period": "Aug 2026",
+      "change": "▲ from +$0.12B in Jul 2026",
       "dir": "positive",
       "src_label": "BPS release →",
       "src_url": "https://www.bps.go.id/id/pressrelease/2026/06/02/2583/ekspor-dan-impor-indonesia-april-2026-masing-masing-tercatat-usd-25-30-miliar-dan-usd-25-21-miliar.html"
@@ -198,7 +198,6 @@
     },
     "inflation_monthly": {
       "labels": [
-        "Dec-25",
         "Jan-26",
         "Feb-26",
         "Mar-26",
@@ -206,10 +205,10 @@
         "May-26",
         "Jun-26",
         "Jul-26",
-        "Aug-26"
+        "Aug-26",
+        "Sep-26"
       ],
       "yoy": [
-        2.92,
         3.55,
         4.76,
         3.48,
@@ -217,37 +216,38 @@
         3.08,
         3.34,
         2.88,
-        3.19
+        3.19,
+        3.28
       ]
     },
     "trade_monthly": {
       "labels": [
-        "Mar-26",
         "Apr-26",
         "May-26",
         "Jun-26",
-        "Jul-26"
+        "Jul-26",
+        "Aug-26"
       ],
       "exports": [
-        22.53,
         25.3,
         23.2,
         25.46,
-        26.22
+        26.22,
+        26.61
       ],
       "imports": [
-        19.21,
         25.21,
         24.81,
         25.91,
-        26.09
+        26.09,
+        23.06
       ],
       "balance": [
-        3.32,
         0.09,
         -1.61,
         -0.45,
-        0.12
+        0.12,
+        3.55
       ]
     },
     "poverty": {
