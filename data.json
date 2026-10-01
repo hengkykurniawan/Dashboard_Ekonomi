@@ -123,9 +123,9 @@
     {
       "key": "fx",
       "label": "USD/IDR (reference rate)",
-      "value": "Rp17,891",
-      "period": "30 Sep 2026",
-      "change": "▲ +7.0% YTD vs Rp16,720",
+      "value": "Rp17,946",
+      "period": "1 Oct 2026",
+      "change": "▲ +7.3% YTD vs Rp16,720",
       "dir": "negative",
       "src_label": "Frankfurter (ECB) →",
       "src_url": "https://www.frankfurter.dev/"
@@ -153,9 +153,9 @@
     {
       "key": "ntp",
       "label": "Farmer's Terms of Trade (NTP)",
-      "value": "129.19",
-      "period": "Aug 2026",
-      "change": "▲ +1.35 pts vs Jul 2026",
+      "value": "131.11",
+      "period": "Sep 2026",
+      "change": "▲ +1.92 pts vs Aug 2026",
       "dir": "positive",
       "src_label": "BPS release →",
       "src_url": "https://www.bps.go.id/en/statistics-table?subject=22"
@@ -268,7 +268,6 @@
     },
     "fx": {
       "labels": [
-        "15 Sep",
         "16 Sep",
         "17 Sep",
         "18 Sep",
@@ -279,10 +278,10 @@
         "25 Sep",
         "28 Sep",
         "29 Sep",
-        "30 Sep"
+        "30 Sep",
+        "1 Oct"
       ],
       "rate": [
-        17697,
         17670,
         17727,
         17823,
@@ -293,7 +292,8 @@
         17914,
         17977,
         17922,
-        17891
+        17891,
+        17946
       ]
     },
     "birate": {
@@ -315,7 +315,7 @@
       ]
     },
     "inflation_by_group": {
-      "month": "Aug 2026",
+      "month": "Sep 2026",
       "labels": [
         "Personal care",
         "Transport",
@@ -323,24 +323,24 @@
         "Restaurants",
         "Health",
         "Household equip.",
-        "Recreation",
         "Info & comm.",
-        "Clothing",
+        "Recreation",
         "Education",
+        "Clothing",
         "Housing & utilities"
       ],
       "yoy": [
-        9.25,
-        4.79,
-        3.86,
-        2.67,
-        2.12,
-        2.0,
-        1.75,
-        1.72,
+        7.77,
+        4.84,
+        4.37,
+        2.7,
+        2.24,
+        2.19,
+        1.83,
+        1.81,
+        1.43,
         1.2,
-        1.2,
-        1.01
+        1.02
       ]
     }
   },
