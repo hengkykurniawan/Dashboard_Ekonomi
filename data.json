@@ -2,7 +2,7 @@
   "meta": {
     "compiled": "19 June 2026",
     "latest_note": "BI-Rate hike 18 Jun · inflation & trade 2 Jun",
-    "generated_at": "2026-11-01",
+    "generated_at": "2026-11-02",
     "generator": "update_dashboard.py",
     "fx_baseline": {
       "rate": 16720,
@@ -43,10 +43,10 @@
     {
       "key": "inflation",
       "label": "Inflation (y-on-y)",
-      "value": "3.28%",
-      "period": "Sep 2026",
-      "change": "▲ +0.09 pp vs Aug 2026 (3.19%)",
-      "dir": "negative",
+      "value": "3.23%",
+      "period": "Oct 2026",
+      "change": "▼ −0.05 pp vs Sep 2026 (3.28%)",
+      "dir": "positive",
       "src_label": "BPS release →",
       "src_url": "https://www.bps.go.id/id/pressrelease/2026/06/02/2579/inflasi-year-on-year--y-on-y--pada-mei-2026-sebesar-3-08-persen-.html"
     },
@@ -143,9 +143,9 @@
     {
       "key": "tourism",
       "label": "Foreign Tourist Arrivals",
-      "value": "1.60M",
-      "period": "Aug 2026",
-      "change": "▲ +6.3% vs Aug 2025",
+      "value": "1.43M",
+      "period": "Sep 2026",
+      "change": "▲ +2.3% vs Sep 2025",
       "dir": "positive",
       "src_label": "BPS release →",
       "src_url": "https://www.bps.go.id/en/statistics-table?subject=16"
@@ -198,7 +198,6 @@
     },
     "inflation_monthly": {
       "labels": [
-        "Jan-26",
         "Feb-26",
         "Mar-26",
         "Apr-26",
@@ -206,10 +205,10 @@
         "Jun-26",
         "Jul-26",
         "Aug-26",
-        "Sep-26"
+        "Sep-26",
+        "Oct-26"
       ],
       "yoy": [
-        3.55,
         4.76,
         3.48,
         2.42,
@@ -217,7 +216,8 @@
         3.34,
         2.88,
         3.19,
-        3.28
+        3.28,
+        3.23
       ]
     },
     "trade_monthly": {
