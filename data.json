@@ -2,7 +2,7 @@
   "meta": {
     "compiled": "19 June 2026",
     "latest_note": "BI-Rate hike 18 Jun · inflation & trade 2 Jun",
-    "generated_at": "2026-11-04",
+    "generated_at": "2026-11-05",
     "generator": "update_dashboard.py",
     "fx_baseline": {
       "rate": 16720,
@@ -13,9 +13,9 @@
     {
       "key": "gdp",
       "label": "GDP Growth (y-on-y)",
-      "value": "5.29%",
-      "period": "Q2 2026",
-      "change": "▲ +0.17 pp vs Q2 2025 (5.12%)",
+      "value": "5.47%",
+      "period": "Q3 2026",
+      "change": "▲ +0.43 pp vs Q3 2025 (5.04%)",
       "dir": "positive",
       "src_label": "BPS release →",
       "src_url": "https://www.bps.go.id/id/pressrelease/2026/05/05/2575/ekonomi-indonesia-triwulan-i-2026-tumbuh-5-61-persen--y-on-y-.html"
@@ -23,19 +23,19 @@
     {
       "key": "gdp_qoq",
       "label": "GDP Growth (q-on-q)",
-      "value": "3.73%",
-      "period": "Q2 2026",
-      "change": "▲ +4.50 pp vs Q1 2026 (-0.77%)",
-      "dir": "positive",
+      "value": "1.59%",
+      "period": "Q3 2026",
+      "change": "▼ −2.14 pp vs Q2 2026 (3.73%)",
+      "dir": "negative",
       "src_label": "BPS release →",
       "src_url": "https://www.bps.go.id/id/pressrelease/2026/05/05/2575/ekonomi-indonesia-triwulan-i-2026-tumbuh-5-61-persen--y-on-y-.html"
     },
     {
       "key": "gdp_hh",
       "label": "Household Consumption (y-o-y)",
-      "value": "5.06%",
-      "period": "Q2 2026",
-      "change": "▲ +0.09 pp vs Q2 2025 (4.97%)",
+      "value": "5.04%",
+      "period": "Q3 2026",
+      "change": "▲ +0.15 pp vs Q3 2025 (4.89%)",
       "dir": "positive",
       "src_label": "BPS release →",
       "src_url": "https://www.bps.go.id/id/pressrelease/2026/05/05/2575/ekonomi-indonesia-triwulan-i-2026-tumbuh-5-61-persen--y-on-y-.html"
@@ -174,7 +174,6 @@
   "charts": {
     "gdp_quarterly": {
       "labels": [
-        "Q2-24",
         "Q3-24",
         "Q4-24",
         "Q1-25",
@@ -182,10 +181,10 @@
         "Q3-25",
         "Q4-25",
         "Q1-26",
-        "Q2-26"
+        "Q2-26",
+        "Q3-26"
       ],
       "growth": [
-        5.05,
         4.95,
         5.02,
         4.87,
@@ -193,7 +192,8 @@
         5.04,
         5.39,
         5.61,
-        5.29
+        5.29,
+        5.47
       ]
     },
     "inflation_monthly": {
