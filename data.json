@@ -2,7 +2,7 @@
   "meta": {
     "compiled": "19 June 2026",
     "latest_note": "BI-Rate hike 18 Jun · inflation & trade 2 Jun",
-    "generated_at": "2026-11-05",
+    "generated_at": "2026-11-06",
     "generator": "update_dashboard.py",
     "fx_baseline": {
       "rate": 16720,
@@ -83,9 +83,9 @@
     {
       "key": "unemployment",
       "label": "Unemployment Rate",
-      "value": "4.68%",
-      "period": "Feb 2026",
-      "change": "▼ −0.08 pp vs Feb 2025 (4.76%)",
+      "value": "4.75%",
+      "period": "Aug 2026",
+      "change": "▼ −0.10 pp vs Aug 2025 (4.85%)",
       "dir": "positive",
       "src_label": "BPS release →",
       "src_url": "https://www.bps.go.id/id/pressrelease/2026/05/05/2574/tingkat-pengangguran-terbuka--tpt--sebesar-4-68-persen--rata-rata-upah-buruh-sebesar-3-29-juta-rupiah-.html"
